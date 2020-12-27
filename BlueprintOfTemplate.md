@@ -6,15 +6,15 @@
 >src/main/java/com/(서비스 명)
 >>domain 도메인(모델)   
 >>>DAO.java   
->>>>selectList(VO vo)
->>>>select(VO vo)
->>>>insertList(VO vo)
->>>>insert(VO vo)
->>>>deleteList(VO vo)
->>>>delete(VO vo)
->>>>updateList(VO vo)
->>>>update(VO vo)
->>>
+>>>>selectList(VO vo)   
+>>>>select(VO vo)   
+>>>>insertList(VO vo)   
+>>>>insert(VO vo)   
+>>>>deleteList(VO vo)   
+>>>>delete(VO vo)   
+>>>>updateList(VO vo)   
+>>>>update(VO vo)   
+>>>   
 >>>DTO.java   
 >>>VO.java    
 >>>  (인터페이스, DAO 추상 메소드 협의 필요)   
