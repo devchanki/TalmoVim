@@ -5,7 +5,9 @@
 --------
 >src/main/java/com/(서비스 명)
 >>domain 도메인(모델)   
->>>DAO,DTO,VO    
+>>>DAO.java   
+>>>DTO.java   
+>>>VO.java    
 >>>  (인터페이스, DAO 추상 메소드 협의 필요)   
 >>>각자 서비스에 필요한 패키지
 >>>>DAO, DTO, VO 상속    
