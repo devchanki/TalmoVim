@@ -17,7 +17,8 @@
 >>>   
 >>>VO.java(깡통인터페이스)   
 >>>: DB로의 데이터 요청용   
->>>샘플 : https://github.com/devchanki/TalmoVim/blob/main/sample_PostVO.java
+>>>샘플 : https://github.com/devchanki/TalmoVim/blob/main/sample_PostVO.java   
+>>>깡통 인터페이스를 활용하는 이유 : 다형성, 유지보수 향상   
 >>>   
 >>>각자 서비스에 필요한 패키지   
 >>>>DAO, DTO, VO 상속    
