@@ -6,6 +6,15 @@
 >src/main/java/com/(서비스 명)
 >>domain 도메인(모델)   
 >>>DAO.java   
+>>>>selectList(VO vo)
+>>>>select(VO vo)
+>>>>insertList(VO vo)
+>>>>insert(VO vo)
+>>>>deleteList(VO vo)
+>>>>delete(VO vo)
+>>>>updateList(VO vo)
+>>>>update(VO vo)
+>>>
 >>>DTO.java   
 >>>VO.java    
 >>>  (인터페이스, DAO 추상 메소드 협의 필요)   
@@ -31,7 +40,8 @@
 >>>>appServlet   
 >>>>jdbc   
 >>>>>jdbc-context.xml   
->>>>>사용할 녀석 스프링설정파일(ex mybatis-context.xml)   
+>>>>>사용할 디비 관련 스프링설정파일
+>>>>>(ex mybatis-context.xml or jpa-context.xml 등..)   
 >>>
 >>>views   
 >>>>각자 jsp 등의 페이지 폴더 구상. 알아서...   
