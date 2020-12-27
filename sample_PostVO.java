@@ -20,10 +20,14 @@ public class PostVO implements VO {
 	private int fromRow;	//가져올 시작 row
 	private int numOfRows;	//한 페이지에 리스트할 dto 갯수
 	
-	
 	private int pageNo;	//바꿀 페이지
 	
-	//정보
+	//데이터 객체형
+	private DTO dto;
+	private List<DTO> list;
+	private Object obj;
+	
+	//데이터 낱개형
 	private int post_id;
 	private String post_title;
 	private String post_contents;
