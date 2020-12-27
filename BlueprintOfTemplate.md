@@ -19,10 +19,19 @@
 >>>: DB로의 데이터 요청용   
 >>>샘플 : https://github.com/devchanki/TalmoVim/blob/main/sample_PostVO.java   
 >>>깡통 인터페이스를 활용하는 이유 : 다형성, 유지보수 향상   
+>>>
+>>>AjaxResult.java   
+>>>: REST response   
+>>>
+>>>AjaxList.java   
+>>>: extends AjaxResult   
+>>>복수 데이터 전송 시   
 >>>   
 >>>각자 서비스에 필요한 패키지   
->>>>DAO, DTO, VO 상속    
->>>>  (구현은 알아서, 매퍼파일(xml)도 좋고 impl 자바클래스도 좋고 => impl경우 중간 매개체 abstract 클래스 생성 추천-impl의 구성이 추상메소드들을 전부 나열하지 않아도 되서, 단순해짐)   
+>>>>DAO, DTO, VO 상속
+>>>> ex) DAO.java(공용) > PostDAO.java > PostDAO.xml (매핑 방식)
+>>>>  (구현은 알아서, 매퍼파일(xml)도 좋고 impl 자바클래스도 좋고 => impl경우 중간 매개체 abstract 클래스 생성 추천-impl의 구성이 추상메소드들을 전부 나열하지 않아도 되서, 단순해짐)
+>>>> ex) DAO.java(공용) > AbstractDAO.java(공용) > PostDAO.java (자바 구현 방식)
 >>>> vo의 경우 type 주는걸 추천! // type : count, one, list, all 등..   
 >>>> dto의 경우 당연한거지만, builder 패턴 활용 적극 추천   
 >>   
