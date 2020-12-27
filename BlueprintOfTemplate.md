@@ -21,7 +21,7 @@
 >>>각자 서비스에 필요한 패키지   
 >>>>DAO, DTO, VO 상속    
 >>>>  (구현은 알아서, 매퍼파일(xml)도 좋고 impl 자바클래스도 좋고 => impl경우 중간 매개체 abstract 클래스 생성 추천-impl의 구성이 추상메소드들을 전부 나열하지 않아도 되서, 단순해짐)   
->>>> vo의 경우 voType, selectType 주는걸 추천! // voType : select, insert, delete, update | selectType : one, list, all 등..   
+>>>> vo의 경우 voType, selectType 주는걸 추천! // voType : select, insert, delete, update | selectType : count, one, list, all 등..   
 >>>> dto의 경우 당연한거지만, builder 패턴 활용 적극 추천   
 >>   
 >>controller 컨트롤러   
