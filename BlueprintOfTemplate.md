@@ -22,10 +22,12 @@
 >>>
 >>>AjaxResult.java   
 >>>: REST response   
+>>>샘플 : https://github.com/devchanki/TalmoVim/blob/main/sample_AjaxResult
 >>>
 >>>AjaxList.java   
 >>>: extends AjaxResult   
 >>>복수 데이터 전송 시   
+>>>샘플 : https://github.com/devchanki/TalmoVim/blob/main/sample_AjaxList
 >>>   
 >>>각자 서비스에 필요한 패키지   
 >>>>DAO, DTO, VO 상속
