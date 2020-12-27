@@ -3,14 +3,14 @@
     
 프로그램 소스
 --------
->src/main/java/com/(서비스 명)
+>src/main/java/com/(서비스 명)   
 >>domain 도메인(모델)   
 >>>DAO.java(인터페이스)   
 >>>>select(VO vo)   
 >>>>insert(VO vo)   
 >>>>delete(VO vo)   
 >>>>update(VO vo)   
->>>>복수 접근은 batch 이용을 적극 추천
+>>>>=>복수 데이터 삽입, 수정은 batch 이용을 적극 추천   
 >>>   
 >>>DTO.java(깡통인터페이스)   
 >>>: 데이터 활용 용도   
