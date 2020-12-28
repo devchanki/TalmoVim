@@ -102,6 +102,7 @@ Type: 버그접수
 
 - 명명 규칙
 - 배치 구조
+[구조 제안](https://github.com/devchanki/TalmoVim/blob/main/BlueprintOfTemplate.md)   
 
 베이스 구조를 먼저 생성할 것
 
