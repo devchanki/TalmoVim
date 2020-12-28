@@ -17,17 +17,17 @@
 >>>   
 >>>VO.java(깡통인터페이스)   
 >>>: DB로의 데이터 요청용   
->>>샘플 : https://github.com/devchanki/TalmoVim/blob/main/sample_PostVO.java   
+>>>샘플 : https://github.com/markhong93/portfolio/blob/main/MVC_Pattern/sample_PostVO.java   
 >>>깡통 인터페이스를 활용하는 이유 : 다형성, 유지보수 향상   
 >>>
 >>>AjaxResult.java   
 >>>: REST response   
->>>샘플 : https://github.com/devchanki/TalmoVim/blob/main/sample_AjaxResult
+>>>샘플 : https://github.com/markhong93/portfolio/blob/main/MVC_Pattern/sample_AjaxResult
 >>>
 >>>AjaxList.java   
 >>>: extends AjaxResult   
 >>>복수 데이터 전송 시   
->>>샘플 : https://github.com/devchanki/TalmoVim/blob/main/sample_AjaxList
+>>>샘플 : https://github.com/markhong93/portfolio/blob/main/MVC_Pattern/sample_AjaxList
 >>>   
 >>>각자 서비스에 필요한 패키지   
 >>>>DAO, DTO, VO 상속
@@ -57,9 +57,9 @@
 >>>>>jdbc-context.xml   
 >>>>>사용할 디비 관련 스프링설정파일   
 >>>>>(ex mybatis-context.xml or jpa-context.xml 등..)   
->>>   
->>>views   
->>>>각자 jsp 등의 페이지 폴더 구상. 알아서...   
+>>   
+>>views   
+>>>각자 jsp 등의 페이지 폴더 구상. 알아서...   
     
 페이지 리소스 파일
 ---------
