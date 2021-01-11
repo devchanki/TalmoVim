@@ -1,11 +1,13 @@
 package com.talmo.vim.follow;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.talmo.vim.follow.util.response.AjaxResponse;
+import com.talmo.vim.follow.util.response.AjaxRestResponse;
 
 /* 메소드 명
  * {명령}{목적}{단위}
@@ -24,6 +26,7 @@ import com.talmo.vim.follow.util.response.AjaxResponse;
  * list
  * 
  * */
+
 @Service
 public class FollowService {
 	@Autowired
@@ -63,43 +66,85 @@ public class FollowService {
 	
 	
 	/*==================기본 서비스==================*/
+	//팩토리 패턴의 직렬화 및 모듈화..
 	
 	/*팔로워 갯수
 	 * request{userId}
 	 * */
 	public AjaxResponse selectFollowerCnt(Map request) {
-		dao.selectFollowerCnt(request);
-		return null;
+		int _count=0;
+		String _status="";
+		String _message="";
+		try {
+			_count=dao.selectFollowerCnt(request).get(0);
+			_status="success";
+			_message="selectFollowerCnt("+request+") success\n";
+		}catch (Exception e) {
+			_status="error";
+			_message="selectFollowerCnt("+request+") error\n";
+		}
+		AjaxResponse result=new AjaxRestResponse().builder().count(_count).status(_status).message(_message).build(); 
+		return result;
 	}
 	
 	/*팔로이 갯수
 	 * request{userId}
 	 * */
 	public AjaxResponse selectFolloweeCnt(Map request) {
-		return null;
+		int _count=0;
+		String _status="";
+		String _message="";
+		try {
+			_count=dao.selectFollowerCnt(request).get(0);
+			_status="success";
+			_message="selectFolloweeCnt("+request+") success\n";
+		}catch (Exception e) {
+			_status="error";
+			_message="selectFolloweeCnt("+request+") error\n";
+		}
+		AjaxResponse result=new AjaxRestResponse().builder().count(_count).status(_status).message(_message).build(); 
+		return result;
 	}
 	
 	/*팔로워 확인 
-	 * request{
-	 * 	userId
-	 * 	type : one, list
-	 *  followerId : one일때 확인해주는 용도
-	 * }
+	 * request{	userId }
 	 * */
 	public AjaxResponse selectFollower(Map request) {
-		return null;
+		String _status="";
+		String _message="";
+		Object _data="";	//nullPointerException 때문에 ""를 넣어둠..
+		try {
+			_data=dao.selectFollowerList(request);
+			_status="success";
+			_message="selectFollower("+request+") success\n";
+		}catch (Exception e) {
+			_status="error";
+			_message="selectFollower("+request+") error\n";
+		}
+		AjaxResponse result=new AjaxRestResponse().builder().data(_data).status(_status).message(_message).build(); 
+		return result;
 	}
 	
 	/*팔로이 확인
-	 * request{
-	 * 	userId
-	 * 	type : one, list
-	 *	followeeId : one일때 확인해주는 용도
-	 * }
+	 * request{	userId }
 	 * */
 	public AjaxResponse selectFollowee(Map request) {
-		return null;
+		String _status="";
+		String _message="";
+		Object _data="";	//nullPointerException 때문에 ""를 넣어둠..
+		try {
+			_data=dao.selectFolloweeList(request);
+			_status="success";
+			_message="selectFollowee("+request+") success\n";
+		}catch (Exception e) {
+			_status="error";
+			_message="selectFollowee("+request+") error\n";
+		}
+		AjaxResponse result=new AjaxRestResponse().builder().data(_data).status(_status).message(_message).build(); 
+		return result;
 	}
+	
+	
 	
 	/*팔로우 신청
 	 * request{
@@ -108,7 +153,21 @@ public class FollowService {
 	 * }
 	 * */
 	public AjaxResponse insertFollower(Map request) {
-		return null;
+		int _count=0;	
+		String _status="";
+		String _message="";
+		try {
+			_count=dao.insertFollower(request);
+			if(_count!=1) throw new Exception();
+			_status="success";
+			_message="insertFollower("+request+") success\n";
+		}catch (Exception e) {
+			_count=0;
+			_status="error";
+			_message="insertFollower("+request+") error\n";
+		}
+		AjaxResponse result=new AjaxRestResponse().builder().count(_count).status(_status).message(_message).build(); 
+		return result;
 	}
 	
 	/*팔로이 신청 수락
@@ -117,9 +176,8 @@ public class FollowService {
 	 * 	followeeId
 	 * }
 	 * */
-	//테이블이 어떻게 구현되있는 확인 필요
+	//테이블이 어떻게 구현되있는 확인 필요 (컨펌 필요)
 	public AjaxResponse acceptFollwee(Map request) {
-		
 		return null;
 	}
 	
@@ -130,7 +188,21 @@ public class FollowService {
 	 * }
 	 * */
 	public AjaxResponse deleteFollower(Map request) {
-		return null;
+		int _count=0;	
+		String _status="";
+		String _message="";
+		try {
+			_count=dao.deleteFollower(request);
+			if(_count!=1) throw new Exception();
+			_status="success";
+			_message="deleteFollower("+request+") success\n";
+		}catch (Exception e) {
+			_count=0;
+			_status="error";
+			_message="deleteFollower("+request+") error\n";
+		}
+		AjaxResponse result=new AjaxRestResponse().builder().count(_count).status(_status).message(_message).build(); 
+		return result;
 	}
 	
 	/*팔로이 삭제하기(팔로우 취소시키기)
@@ -140,6 +212,20 @@ public class FollowService {
 	 * }
 	 * */
 	public AjaxResponse deleteFollowee(Map request) {
-		return null;
+		int _count=0;	
+		String _status="";
+		String _message="";
+		try {
+			_count=dao.deleteFollowee(request);
+			if(_count!=1) throw new Exception();
+			_status="success";
+			_message="deleteFollowee("+request+") success\n";
+		}catch (Exception e) {
+			_count=0;
+			_status="error";
+			_message="deleteFollowee("+request+") error\n";
+		}
+		AjaxResponse result=new AjaxRestResponse().builder().count(_count).status(_status).message(_message).build(); 
+		return result;
 	}
 }

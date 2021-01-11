@@ -3,10 +3,12 @@ package com.talmo.vim.follow;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.stereotype.Repository;
+
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
-
+@Repository
 public interface FollowRepository {	
 	
 	//팔로워 수
@@ -15,9 +17,9 @@ public interface FollowRepository {
 	List<Map> selectFollowerList(Map request);
 	
 	//팔로이 수
-	List<Integer> selectFollweeCnt(Map request);
+	List<Integer> selectFolloweeCnt(Map request);
 	//팔로이 리스트
-	List<Map> selectFollweeList(Map request);
+	List<Map> selectFolloweeList(Map request);
 	
 	//
 	int insertFollower(Map request);
@@ -27,4 +29,5 @@ public interface FollowRepository {
 	
 	//
 	int deleteFollowee(Map request);
+
 }
