@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.talmo.vim.follow.util.abstractObj.FollowServiceTemplate;
 import com.talmo.vim.follow.util.response.AjaxResponse;
-import com.talmo.vim.follow.util.response.AjaxRestResponse;
+import com.talmo.vim.follow.util.response.FollowAjaxRestResponse;
 
 /* 메소드 명
  * {명령}{목적}{단위}
@@ -137,10 +137,10 @@ public class FollowService {
 	public AjaxResponse initFollowCnt(Map request) {
 		Map _data = new HashMap<String, Object>();
 		//팔로우 갯수, 팔로이 갯수 함수 호출
-		_data.put("follower_cnt", ((AjaxRestResponse)selectFollowerCntService.proceed(request)).getData());
+		_data.put("follower_cnt", ((FollowAjaxRestResponse)selectFollowerCntService.proceed(request)).getData());
 		_data.put("followee_cnt", selectFolloweeCntService.proceed(request));
 		
-		AjaxResponse result=new AjaxRestResponse();
+		AjaxResponse result=new FollowAjaxRestResponse();
 		return null;
 	}
 	
@@ -180,7 +180,7 @@ public class FollowService {
 			_message="selectFollowerCnt("+request+") error\n";
 		}
 		protected AjaxResponse makeAjaxResponse() {
-			AjaxResponse result=new AjaxRestResponse().builder().count(_count).status(_status).message(_message).build(); 
+			AjaxResponse result=new FollowAjaxRestResponse().builder().count(_count).status(_status).message(_message).build(); 
 			return result;
 		}
 	}
@@ -197,7 +197,7 @@ public class FollowService {
 			_message="selectFolloweeCnt("+request+") error\n";
 		}
 		protected AjaxResponse makeAjaxResponse() {
-			AjaxResponse result=new AjaxRestResponse().builder().count(_count).status(_status).message(_message).build(); 
+			AjaxResponse result=new FollowAjaxRestResponse().builder().count(_count).status(_status).message(_message).build(); 
 			return result;
 		}
 	}
@@ -214,7 +214,7 @@ public class FollowService {
 			_message="selectFollower("+request+") error\n";
 		}
 		protected AjaxResponse makeAjaxResponse() {
-			AjaxResponse result=new AjaxRestResponse().builder().data(_data).status(_status).message(_message).build(); 
+			AjaxResponse result=new FollowAjaxRestResponse().builder().data(_data).status(_status).message(_message).build(); 
 			return result;
 		}
 	}
@@ -231,7 +231,7 @@ public class FollowService {
 			_message="selectFollowee("+request+") error\n";
 		}
 		protected AjaxResponse makeAjaxResponse() {
-			AjaxResponse result=new AjaxRestResponse().builder().data(_data).status(_status).message(_message).build(); 
+			AjaxResponse result=new FollowAjaxRestResponse().builder().data(_data).status(_status).message(_message).build(); 
 			return result;
 		}
 	}
@@ -249,7 +249,7 @@ public class FollowService {
 			_message="deleteFollower("+request+") error\n";
 		}
 		protected AjaxResponse makeAjaxResponse() {
-			AjaxResponse result=new AjaxRestResponse().builder().count(_count).status(_status).message(_message).build(); 
+			AjaxResponse result=new FollowAjaxRestResponse().builder().count(_count).status(_status).message(_message).build(); 
 			return result;
 		}
 	}
@@ -267,7 +267,7 @@ public class FollowService {
 			_message="deleteFollowee("+request+") error\n";
 		}
 		protected AjaxResponse makeAjaxResponse() {
-			AjaxResponse result=new AjaxRestResponse().builder().count(_count).status(_status).message(_message).build(); 
+			AjaxResponse result=new FollowAjaxRestResponse().builder().count(_count).status(_status).message(_message).build(); 
 			return result;
 		}
 	}
@@ -285,7 +285,7 @@ public class FollowService {
 			_message="insertFollowee("+request+") error\n";
 		}
 		protected AjaxResponse makeAjaxResponse() {
-			AjaxResponse result=new AjaxRestResponse().builder().count(_count).status(_status).message(_message).build(); 
+			AjaxResponse result=new FollowAjaxRestResponse().builder().count(_count).status(_status).message(_message).build(); 
 			return result;
 		}
 	}
