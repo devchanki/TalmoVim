@@ -12,6 +12,6 @@ public class LoginController {
 
 	@RequestMapping(value = "/page")
 	public String loginPage(HttpServletRequest request, ModelMap model) {
-		return "";
+		return "login/login";
 	}
 }
