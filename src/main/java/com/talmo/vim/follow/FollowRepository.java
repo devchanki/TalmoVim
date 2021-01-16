@@ -13,16 +13,18 @@ public interface FollowRepository {
 	
 	//팔로워 수
 	List<Integer> selectFollowerCnt(Map request);
+	
 	//팔로워 리스트
 	List<Map> selectFollowerList(Map request);
 	
 	//팔로이 수
 	List<Integer> selectFolloweeCnt(Map request);
+	
 	//팔로이 리스트
 	List<Map> selectFolloweeList(Map request);
 	
 	//
-	int insertFollower(Map request);
+	int insertFollowee(Map request);
 	
 	//
 	int deleteFollower(Map request);
