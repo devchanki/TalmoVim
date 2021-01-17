@@ -3,13 +3,15 @@ package com.talmo.vim.follow;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 @Repository
-public interface FollowRepository {	
+@Mapper
+public interface FollowRepository {
 	
 	//팔로워 수
 	List<Integer> selectFollowerCnt(Map request);

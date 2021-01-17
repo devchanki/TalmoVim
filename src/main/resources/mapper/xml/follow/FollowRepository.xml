@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.talmo.vim.follow.FollowRepository">
+	<select id="selectFollowerCnt" parameterType="java.util.Map" resultType="java.util.List">
+		SELECT 
+			COUNT(*)
+		FROM
+			follow_table
+		WHERE
+			followee_id=#{user_id}
+	</select>
+	
+	<select id="selectFollowerList" parameterType="java.util.Map" resultType="java.util.List">
+		<choose>
+			<when test="type=='default'">
+				SELECT 
+					*
+				FROM
+					follow_table
+				WHERE
+					followee_id=#{user_id}
+				ORDER BY
+					follower_id
+			</when>
+			<when test="type=='one'">
+				SELECT 
+					*
+				FROM
+					follow_table
+				WHERE
+					followee_id=#{user_id}, follower_id=#{opponent_id}
+			</when>
+			<when test="type=='list'">
+				SELECT a.*
+				FROM
+				(
+					SELECT 
+						*
+					FROM
+						follow_table
+					WHERE
+						followee_id=#{user_id}
+					ORDER BY
+						follower_id
+				) a
+				LIMIT
+					#{row_cnt}
+				OFFSET
+					#{from_row}-1
+				
+			</when>
+		</choose>
+	</select>
+	
+	<select id="selectFolloweeCnt" parameterType="java.util.Map" resultType="java.util.List">
+		SELECT
+			COUNT(*)
+		FROM
+			follow_table
+		WHERE
+			follower_id=#{user_id}
+	</select>
+	
+	<select id="selectFolloweeList" parameterType="java.util.Map" resultType="java.util.List">
+		<choose>
+			<when test="type=='default'">
+				SELECT 
+					*
+				FROM
+					follow_table
+				WHERE
+					follower_id=#{user_id}
+				ORDER BY
+					followee_id
+			</when>
+			<when test="type=='one'">
+				SELECT 
+					*
+				FROM
+					follow_table
+				WHERE
+					follower_id=#{user_id}, followee_id=#{opponent_id}
+			</when>
+			<when test="type=='list'">
+				SELECT a.*
+				FROM
+				(
+					SELECT 
+						*
+					FROM
+						follow_table
+					WHERE
+						follower_id=#{user_id}
+					ORDER BY
+						followee_id
+				) a
+				LIMIT
+					#{row_cnt}
+				OFFSET
+					#{from_row}-1
+				
+			</when>
+		</choose>
+	</select>
+	
+	<delete id="deleteFollower" parameterType="java.util.Map" flushCache="true">
+		DELETE 
+		FROM
+			follow_table
+		WHERE
+			followee_id=#{user_id} 
+			AND
+			follower_id=#{opponent_id}
+	</delete>
+	
+	<delete id="deleteFollowee" parameterType="java.util.Map" flushCache="true">
+		DELETE
+		FROM
+			follow_table
+		WHERE
+			follower_id=#{user_id} 
+			AND
+			followee_id=#{opponent_id}
+	</delete>
+	
+	<insert id="insertFollowee" parameterType="java.util.Map" flushCache="true">
+		INSERT INTO
+			follow_table(follower_id, followee_id)
+		VALUES
+			(#{user_id}, #{opponent_id})
+	</insert>
+	
+</mapper>
