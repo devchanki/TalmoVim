@@ -1,4 +1,4 @@
-package group;
+package com.talmo.vim.group;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
