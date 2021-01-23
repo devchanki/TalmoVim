@@ -5,7 +5,7 @@
 
 /*팔로우 팔로이 단일 대상 확인*/
 function requestChkFollow(user_id, opponent_id){
-	var data=null;
+	var followResponseData=null;
 	var requestMap={
 		user_id : user_id,
 		type : 'one',
@@ -24,16 +24,16 @@ function requestChkFollow(user_id, opponent_id){
 		async:false,
 		success:function(data){
 			if(data.status=='success'){
-				var data=data;
+				var followResponseData=data;
 			}
 		}
 	});
-	return data;
+	return followResponseData;
 }
 
 /*팔로우 카운트 초기화*/
 function requestInitMyFollow(user_id){
-	var data=null;
+	var followResponseData=null;
 	var requestMap={
 		user_id:user_id
 	};
@@ -48,18 +48,18 @@ function requestInitMyFollow(user_id){
 		contentType:'application/json',
 		cache:false,
 		async:false,
-		success:function(data,status){
+		success:function(data){
 			if(data.status=='success'){
-				var data=data;
+				var followResponseData=data;
 			}
 		}
 	});
-	return data;
+	return followResponseData;
 }
 
 /*팔로워 리스트 초기화 (모두 가져오기)*/
 function requestInitMyFollowerList(user_id){
-	var data=null;
+	var followResponseData=null;
 	var requestMap={
 		user_id : user_id,
 		type : 'default'
@@ -75,13 +75,13 @@ function requestInitMyFollowerList(user_id){
 		contentType:'application/json',
 		cache:false,
 		async:false,
-		success:function(data,status){
+		success:function(data){
 			if(data.status=='success'){
-				var data=data;
+				var followResponseData=data;
 			}
 		}
 	});
-	return data;
+	return followResponseData;
 }
 
 /*팔로워 리스트 초기화 (요청 갯수 정해주는 것)*/
@@ -91,7 +91,7 @@ function requestInitMyFollowerList(user_id, row_cnt){
 
 /*팔로워 리스트 추가 요청 */
 function requestMoreMyFollowerList(user_id, row_cnt, from_row){
-	var data=null;
+	var followResponseData=null;
 	var requestMap={
 		user_id : user_id,
 		type : 'list',
@@ -109,18 +109,18 @@ function requestMoreMyFollowerList(user_id, row_cnt, from_row){
 		contentType:'application/json',
 		cache:false,
 		async:false,
-		success:function(data,status){
+		success:function(data){
 			if(data.status=='success'){
-				var data=data;
+				var followResponseData=data;
 			}
 		}
 	});
-	return data;
+	return followResponseData;
 }
 
 /*팔로이 리스트 초기화 (모두 가져오기)*/
 function requestInitMyFolloweeList(user_id){
-	var data=null;
+	var followResponseData=null;
 	var requestMap={
 		user_id : user_id,
 		type : 'default'
@@ -136,13 +136,13 @@ function requestInitMyFolloweeList(user_id){
 		contentType:'application/json',
 		cache:false,
 		async:false,
-		success:function(data,status){
+		success:function(data){
 			if(data.status=='success'){
-				var data=data;
+				var followResponseData=data;
 			}
 		}
 	});
-	return data;
+	return followResponseData;
 }
 
 /*팔로이 리스트 초기화 (요청 갯수 정해주는 것)*/
@@ -152,7 +152,7 @@ function requestInitMyFolloweeList(user_id, row_cnt){
 
 /*팔로이 리스트 추가 요청 */
 function requestMoreMyFolloweeList(user_id, row_cnt, from_row){
-	var data=null;
+	var followResponseData=null;
 	var requestMap={
 		user_id : user_id,
 		type : 'list',
@@ -170,18 +170,18 @@ function requestMoreMyFolloweeList(user_id, row_cnt, from_row){
 		contentType:'application/json',
 		cache:false,
 		async:false,
-		success:function(data,status){
+		success:function(data){
 			if(data.status=='success'){
-				var data=data;
+				var followResponseData=data;
 			}
 		}
 	});
-	return data;
+	return followResponseData;
 }
 
 /*팔로워 제거*/
 function deleteFollower(user_id, opponent_id){
-	var data=null;
+	var followResponseData=null;
 	var requestMap={
 		user_id : user_id,
 		opponent_id : opponent_id
@@ -197,18 +197,18 @@ function deleteFollower(user_id, opponent_id){
 		contentType:'application/json',
 		cache:false,
 		async:false,
-		success:function(data,status){
+		success:function(data){
 			if(data.status=='success'){
-				var data=data;
+				var followResponseData=data;
 			}
 		}
 	});
-	return data;
+	return followResponseData;
 }
 
 /*팔로이 제거*/
 function deleteFollowee(user_id, opponent_id){
-	var data=null;
+	var followResponseData=null;
 	var requestMap={
 		user_id : user_id,
 		opponent_id : opponent_id
@@ -224,18 +224,18 @@ function deleteFollowee(user_id, opponent_id){
 		contentType:'application/json',
 		cache:false,
 		async:false,
-		success:function(data,status){
+		success:function(data){
 			if(data.status=='success'){
-				var data=data;
+				var followResponseData=data;
 			}
 		}
 	});
-	return data;
+	return followResponseData;
 }
 
 /*팔로우 하기(팔로이 추가) */
 function addFollowee(user_id, opponent_id){
-	var data=null;
+	var followResponseData=null;
 	var requestMap={
 		user_id : user_id,
 		opponent_id : opponent_id
@@ -251,11 +251,11 @@ function addFollowee(user_id, opponent_id){
 		contentType:'application/json',
 		cache:false,
 		async:false,
-		success:function(data,status){
+		success:function(data){
 			if(data.status=='success'){
-				var data=data;
+				var followResponseData=data;
 			}
 		}
 	});
-	return data;
+	return followResponseData;
 }
