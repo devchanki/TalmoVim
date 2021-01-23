@@ -47,7 +47,6 @@
 					#{row_cnt}
 				OFFSET
 					#{from_row}-1
-				
 			</when>
 		</choose>
 	</select>

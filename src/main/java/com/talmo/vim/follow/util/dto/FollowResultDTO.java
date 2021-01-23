@@ -10,8 +10,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class FollowResultDTO extends ResultDTO{
-	protected int count;			// 데이터 개수
-	protected String status;	// 서비스 처리 결과
-	protected String message; 	// 처리 결과 메세지
-	protected Object data;		//result data
+	private int count;			// 데이터 개수
+	private String status;	// 서비스 처리 결과
+	private String message; 	// 처리 결과 메세지
+	private Object data;		//result data
 }

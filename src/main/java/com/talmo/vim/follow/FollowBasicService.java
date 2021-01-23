@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import com.talmo.vim.follow.util.dto.FollowResultDTO;
 import com.talmo.vim.follow.util.dto.ResultDTO;
 import com.talmo.vim.follow.util.response.AjaxResponse;
-import com.talmo.vim.follow.util.response.FollowAjaxRestResponse;
 import com.talmo.vim.follow.util.serviceTemplate.FollowBasicServiceTemplate;
 
 /* 메소드 명
