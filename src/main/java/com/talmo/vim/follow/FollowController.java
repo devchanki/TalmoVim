@@ -38,6 +38,9 @@ public class FollowController {
 	public AjaxResponse initFollow(@RequestBody HashMap<String, Object> request) {
 		ResultDTO result=followComplexService.initFollowCnt(request);
 		AjaxResponse ajaxResponse = new FollowAjaxRestResponseAdapter(result);
+		System.out.println(request);
+		System.out.println(result);
+		System.out.println(ajaxResponse);
 		return ajaxResponse;
 	}
 	

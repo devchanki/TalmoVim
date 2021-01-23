@@ -3,12 +3,10 @@ package com.talmo.vim.follow.util.adapter;
 import com.talmo.vim.follow.util.dto.FollowResultDTO;
 import com.talmo.vim.follow.util.dto.ResultDTO;
 
-public class FollowAjaxRestResponseAdapter extends AjaxResponseAdapter {
+import lombok.ToString;
 
-	private int count;
-	private String status;
-	private String message;
-	private Object data;
+@ToString
+public class FollowAjaxRestResponseAdapter extends AjaxResponseAdapter {
 	
 	public FollowAjaxRestResponseAdapter(ResultDTO adaptee) {
 		super(adaptee);
@@ -21,6 +19,7 @@ public class FollowAjaxRestResponseAdapter extends AjaxResponseAdapter {
 		this.status=dto.getStatus();
 		this.message=dto.getMessage();
 		this.data=dto.getData();
+		System.out.println("count:"+dto.getCount());
 	}
 
 }

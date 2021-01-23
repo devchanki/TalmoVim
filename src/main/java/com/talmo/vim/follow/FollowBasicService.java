@@ -144,11 +144,15 @@ public class FollowBasicService {
 	class SelectFollowerCntService extends FollowBasicServiceTemplate{		
 		@Override
 		protected void setDataFromDB() throws Exception{
+			System.out.println("함수???");
+			System.out.println(request);
+			System.out.println("?????");
 			_count=dao.selectFollowerCnt(request).get(0);
+			System.out.println("함수count:"+_count);
 		}
 		@Override
 		protected void setMessageFinally() {
-			_message="["+_status+"]initFollowCnt("+request+")";
+			_message=_status+": SelectFollowerCntService";
 		}
 		@Override
 		protected ResultDTO makeResultDTO() {
@@ -165,7 +169,7 @@ public class FollowBasicService {
 		}
 		@Override
 		protected void setMessageFinally() {
-			_message="["+_status+"]initFollowCnt("+request+")";
+			_message=_status+": SelectFolloweeCntService";
 		}
 		@Override
 		protected ResultDTO makeResultDTO() {
@@ -182,7 +186,7 @@ public class FollowBasicService {
 		}
 		@Override
 		protected void setMessageFinally() {
-			_message="["+_status+"]initFollowCnt("+request+")";
+			_message=_status+": SelectFollowerService";
 		}
 		@Override
 		protected ResultDTO makeResultDTO() {
@@ -199,7 +203,7 @@ public class FollowBasicService {
 		}
 		@Override
 		protected void setMessageFinally() {
-			_message="["+_status+"]initFollowCnt("+request+")";
+			_message=_status+": SelectFolloweeService";
 		}
 		@Override
 		protected ResultDTO makeResultDTO() {
@@ -217,7 +221,7 @@ public class FollowBasicService {
 		}
 		@Override
 		protected void setMessageFinally() {
-			_message="["+_status+"]initFollowCnt("+request+")";
+			_message=_status+": DeleteFollowerService";
 		}
 		@Override
 		protected ResultDTO makeResultDTO() {
@@ -235,7 +239,7 @@ public class FollowBasicService {
 		}
 		@Override
 		protected void setMessageFinally() {
-			_message="["+_status+"]initFollowCnt("+request+")";
+			_message=_status+": DeleteFolloweeService";
 		}
 		@Override
 		protected ResultDTO makeResultDTO() {
@@ -253,7 +257,7 @@ public class FollowBasicService {
 		}
 		@Override
 		protected void setMessageFinally() {
-			_message="["+_status+"]initFollowCnt("+request+")";
+			_message=_status+": InsertFolloweeService";
 		}
 		@Override
 		protected ResultDTO makeResultDTO() {

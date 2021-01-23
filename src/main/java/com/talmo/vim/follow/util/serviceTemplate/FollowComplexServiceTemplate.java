@@ -24,10 +24,9 @@ public abstract class FollowComplexServiceTemplate {
 			_status="error";
 			setMessageError();
 		}finally {
-			_message="initFollowerList("+request+") "+_message; //다중 메세지 입력
 			setMessageFinally();
 		}
-		
+		_message="하";
 		result=new FollowResultDTO().builder().count(_count).data(_data).status(_status).message(_message).build();
 		return result;
 	}

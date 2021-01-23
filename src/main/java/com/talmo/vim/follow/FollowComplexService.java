@@ -58,7 +58,7 @@ public class FollowComplexService{
 	/*상대 팔로우 체크 : 상대와 나와의 팔로워, 팔로이 관계 확인*/
 	public ResultDTO chkFollow(Map request) {
 		ResultDTO result = chkFollowService.proceed(request);
-		return null;
+		return result;
 	}
 	
 	/*==================서비스 메소드 구현 내부 클래스==================*/
@@ -69,13 +69,13 @@ public class FollowComplexService{
 			Map map = new HashMap<String, Object>();
 			//팔로우 수 호출
 			result=followBasicService.selectFollowerCnt(request);
-			_message+=result.getMessage()+", ";
+			_message+=result.getMessage();
 			if(!(result.getStatus().equals("success"))) throw new Exception();
 			map.put("follower_cnt", result.getCount());
 			
 			//팔로이 수 호출
 			result=followBasicService.selectFolloweeCnt(request);
-			_message+=result.getMessage();
+			_message+=" "+result.getMessage();
 			if(!(result.getStatus().equals("success"))) throw new Exception();
 			map.put("followee_cnt", result.getCount());
 			
@@ -84,7 +84,7 @@ public class FollowComplexService{
 		}
 		@Override
 		protected void setMessageFinally() {
-			_message="["+_status+"]initFollowCnt("+request+"){ "+_message+" }";
+			_message=""+_status+": InitFollowCntService >>"+_message;
 		}
 	}
 	
@@ -95,19 +95,19 @@ public class FollowComplexService{
 			_data = new HashMap<String, Object>();
 			//팔로워 수
 			result=followBasicService.selectFollowerCnt(request);
-			_message+=result.getMessage()+", ";
+			_message+=result.getMessage();
 			if(!(result.getStatus().equals("success"))) throw new Exception();
 			_count=result.getCount();
 			
 			//팔로워 리스트
 			result=followBasicService.selectFollower(request);
-			_message+=result.getMessage();
+			_message+=" "+result.getMessage();
 			if(!(result.getStatus().equals("success"))) throw new Exception();
 			_data=result.getData();
 		}
 		@Override
 		protected void setMessageFinally() {
-			_message="["+_status+"]initFollowerList("+request+"){ "+_message+" }";
+			_message=""+_status+": InitFollowerListService >>"+_message;
 		}
 	}
 	
@@ -118,19 +118,19 @@ public class FollowComplexService{
 			_data = new HashMap<String, Object>();
 			//팔로이 수
 			result=followBasicService.selectFolloweeCnt(request);
-			_message+=result.getMessage()+", ";
+			_message+=result.getMessage();
 			if(!(result.getStatus().equals("success"))) throw new Exception();
 			_count=result.getCount();
 			
 			//팔로이 리스트
 			result=followBasicService.selectFollowee(request);
-			_message+=result.getMessage();
+			_message+=" "+result.getMessage();
 			if(!(result.getStatus().equals("success"))) throw new Exception();
 			_data=result.getData();
 		}
 		@Override
 		protected void setMessageFinally() {
-			_message="["+_status+"]initFolloweeList("+request+"){ "+_message+" }";
+			_message=""+_status+": InitFolloweeListService >>"+_message;
 		}
 	}
 	
@@ -141,7 +141,7 @@ public class FollowComplexService{
 			Map map = new HashMap<String, Object>();
 			//팔로워 체크
 			result=followBasicService.selectFollower(request);
-			_message+=result.getMessage()+", ";
+			_message+=result.getMessage();
 			if(!(result.getStatus().equals("success"))) throw new Exception();
 			if(result.getData()!=null)
 				map.put("is_follower", 1);
@@ -150,7 +150,7 @@ public class FollowComplexService{
 			
 			//팔로이 체크
 			result=followBasicService.selectFolloweeCnt(request);
-			_message+=result.getMessage();
+			_message+=" "+result.getMessage();
 			if(!(result.getStatus().equals("success"))) throw new Exception();
 			if(result.getData()!=null)
 				map.put("is_followee", 1);
@@ -162,7 +162,7 @@ public class FollowComplexService{
 		}
 		@Override
 		protected void setMessageFinally() {
-			_message="["+_status+"]initFolloweeList("+request+"){ "+_message+" }";
+			_message=""+_status+": ChkFollowService >>"+_message;
 		}
 	}
 }

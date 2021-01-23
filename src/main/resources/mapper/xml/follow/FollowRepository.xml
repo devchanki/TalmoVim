@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.talmo.vim.follow.FollowRepository">
-	<select id="selectFollowerCnt" parameterType="java.util.Map" resultType="java.util.List">
+	<select id="selectFollowerCnt" parameterType="java.util.HashMap" resultType="int">
 		SELECT 
 			COUNT(*)
 		FROM
-			follow_table
+			talmo_test_follow_table
 		WHERE
-			followee_id=#{user_id}
+			FOLLOWEE=#{user_id}
 	</select>
 	
-	<select id="selectFollowerList" parameterType="java.util.Map" resultType="java.util.List">
+	<select id="selectFollowerList" parameterType="java.util.HashMap" resultType="com.talmo.vim.follow.util.dto.FollowVO">
 		<choose>
 			<when test="type=='default'">
 				SELECT 
 					*
 				FROM
-					follow_table
+					talmo_test_follow_table
 				WHERE
-					followee_id=#{user_id}
+					FOLLOWEE=#{user_id}
 				ORDER BY
-					follower_id
+					FOLLOWER
 			</when>
 			<when test="type=='one'">
 				SELECT 
 					*
 				FROM
-					follow_table
+					talmo_test_follow_table
 				WHERE
-					followee_id=#{user_id}, follower_id=#{opponent_id}
+					FOLLOWEE=#{user_id}, FOLLOWER=#{opponent_id}
 			</when>
 			<when test="type=='list'">
 				SELECT a.*
@@ -37,11 +37,11 @@
 					SELECT 
 						*
 					FROM
-						follow_table
+						talmo_test_follow_table
 					WHERE
-						followee_id=#{user_id}
+						FOLLOWEE=#{user_id}
 					ORDER BY
-						follower_id
+						FOLLOWER
 				) a
 				LIMIT
 					#{row_cnt}
@@ -51,34 +51,34 @@
 		</choose>
 	</select>
 	
-	<select id="selectFolloweeCnt" parameterType="java.util.Map" resultType="java.util.List">
+	<select id="selectFolloweeCnt" parameterType="java.util.HashMap" resultType="int">
 		SELECT
 			COUNT(*)
 		FROM
-			follow_table
+			talmo_test_follow_table
 		WHERE
-			follower_id=#{user_id}
+			FOLLOWER=#{user_id}
 	</select>
 	
-	<select id="selectFolloweeList" parameterType="java.util.Map" resultType="java.util.List">
+	<select id="selectFolloweeList" parameterType="java.util.HashMap" resultType="com.talmo.vim.follow.util.dto.FollowVO">
 		<choose>
 			<when test="type=='default'">
 				SELECT 
 					*
 				FROM
-					follow_table
+					talmo_test_follow_table
 				WHERE
-					follower_id=#{user_id}
+					FOLLOWER=#{user_id}
 				ORDER BY
-					followee_id
+					FOLLOWEE
 			</when>
 			<when test="type=='one'">
 				SELECT 
 					*
 				FROM
-					follow_table
+					talmo_test_follow_table
 				WHERE
-					follower_id=#{user_id}, followee_id=#{opponent_id}
+					FOLLOWER=#{user_id}, FOLLOWEE=#{opponent_id}
 			</when>
 			<when test="type=='list'">
 				SELECT a.*
@@ -87,11 +87,11 @@
 					SELECT 
 						*
 					FROM
-						follow_table
+						talmo_test_follow_table
 					WHERE
-						follower_id=#{user_id}
+						FOLLOWER=#{user_id}
 					ORDER BY
-						followee_id
+						FOLLOWEE
 				) a
 				LIMIT
 					#{row_cnt}
@@ -102,29 +102,29 @@
 		</choose>
 	</select>
 	
-	<delete id="deleteFollower" parameterType="java.util.Map" flushCache="true">
+	<delete id="deleteFollower" parameterType="java.util.HashMap" flushCache="true">
 		DELETE 
 		FROM
-			follow_table
+			talmo_test_follow_table
 		WHERE
-			followee_id=#{user_id} 
+			FOLLOWEE=#{user_id} 
 			AND
-			follower_id=#{opponent_id}
+			FOLLOWER=#{opponent_id}
 	</delete>
 	
-	<delete id="deleteFollowee" parameterType="java.util.Map" flushCache="true">
+	<delete id="deleteFollowee" parameterType="java.util.HashMap" flushCache="true">
 		DELETE
 		FROM
-			follow_table
+			talmo_test_follow_table
 		WHERE
-			follower_id=#{user_id} 
+			FOLLOWER=#{user_id} 
 			AND
-			followee_id=#{opponent_id}
+			FOLLOWEE=#{opponent_id}
 	</delete>
 	
-	<insert id="insertFollowee" parameterType="java.util.Map" flushCache="true">
+	<insert id="insertFollowee" parameterType="java.util.HashMap" flushCache="true">
 		INSERT INTO
-			follow_table(follower_id, followee_id)
+			talmo_test_follow_table(FOLLOWER, FOLLOWEE)
 		VALUES
 			(#{user_id}, #{opponent_id})
 	</insert>

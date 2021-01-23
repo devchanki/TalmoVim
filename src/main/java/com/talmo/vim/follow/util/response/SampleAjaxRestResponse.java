@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class SampleAjaxRestResponse implements AjaxResponse {
+public class SampleAjaxRestResponse extends AjaxResponse {
 	private int count;			// 데이터 개수
 	private String status;	// 서비스 처리 결과
 	private String message; 	// 처리 결과 메세지

@@ -20,6 +20,7 @@ public abstract class FollowBasicServiceTemplate {
 		}catch(Exception e){
 			_status="error";
 			setMessageError();
+			System.out.println(e.getMessage());
 		}finally {
 			setMessageFinally();
 		}
