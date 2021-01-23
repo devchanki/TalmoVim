@@ -3,14 +3,14 @@
 <mapper namespace="com.talmo.vim.group.GroupRepository">
 	<insert id="insertGroup" parameterType="com.talmo.vim.group.util.GroupVO" 
 	useGeneratedKeys="true" keyProperty="groupId" keyColumn="GROUP_ID">
-		INSERT INTO talmo_test_db.group (`GROUP_NAME`, `GROUP_DESC`, `USER_ID`) VALUES (#{groupName}, #{groupDesc}, #{userId});
+		INSERT INTO TMV_GROUP (`GROUP_NAME`, `GROUP_DESC`, `USER_ID`) VALUES (#{groupName}, #{groupDesc}, #{userId});
 	</insert>
 	
 	<delete id="deleteGroup" parameterType="long">
-		DELETE FROM talmo_test_db.group WHERE `GROUP_ID` = #{groupId};
+		DELETE FROM TMV_GROUP WHERE `GROUP_ID` = #{groupId};
 	</delete>
 	
 	<select id="selectGroup" parameterType="long" resultType="com.talmo.vim.group.util.GroupVO">
-		SELECT GROUP_ID AS groupId, USER_ID AS userId, GROUP_NAME AS groupName, GROUP_DESC AS groupDesc FROM talmo_test_db.group WHERE GROUP_ID = #{groupId}
+		SELECT GROUP_ID AS groupId, USER_ID AS userId, GROUP_NAME AS groupName, GROUP_DESC AS groupDesc FROM TMV_GROUP WHERE GROUP_ID = #{groupId}
 	</select>
 </mapper>

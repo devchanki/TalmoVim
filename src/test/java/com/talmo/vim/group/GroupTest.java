@@ -17,7 +17,6 @@ import java.util.*;
 
 @Slf4j
 @SpringBootTest
-@ActiveProfiles("test")
 public class GroupTest {
 	@Autowired
 	GroupRepository repo;
