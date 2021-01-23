@@ -29,7 +29,7 @@ public class FollowController {
 	@PostMapping("/one")
 	public AjaxResponse chkFollow(@RequestBody HashMap<String, Object> request) {
 		ResultDTO result=followComplexService.chkFollow(request);
-		AjaxResponse ajaxResponse = new FollowAjaxRestResponseAdapter(request);
+		AjaxResponse ajaxResponse = new FollowAjaxRestResponseAdapter(result);
 		return ajaxResponse;
 	}
 	
@@ -37,7 +37,7 @@ public class FollowController {
 	@PostMapping("/my")
 	public AjaxResponse initFollow(@RequestBody HashMap<String, Object> request) {
 		ResultDTO result=followComplexService.initFollowCnt(request);
-		AjaxResponse ajaxResponse = new FollowAjaxRestResponseAdapter(request);
+		AjaxResponse ajaxResponse = new FollowAjaxRestResponseAdapter(result);
 		return ajaxResponse;
 	}
 	
@@ -45,7 +45,7 @@ public class FollowController {
 	@PostMapping("/follower")
 	public AjaxResponse initFollowerList(@RequestBody HashMap<String, Object> request) {
 		ResultDTO result=followComplexService.initFollowerList(request);
-		AjaxResponse ajaxResponse = new FollowAjaxRestResponseAdapter(request);
+		AjaxResponse ajaxResponse = new FollowAjaxRestResponseAdapter(result);
 		return ajaxResponse;
 	}
 	
@@ -53,7 +53,7 @@ public class FollowController {
 	@PostMapping("/followee")
 	public AjaxResponse initFolloweeList(@RequestBody HashMap<String, Object> request) {
 		ResultDTO result=followComplexService.initFolloweeList(request);
-		AjaxResponse ajaxResponse = new FollowAjaxRestResponseAdapter(request);
+		AjaxResponse ajaxResponse = new FollowAjaxRestResponseAdapter(result);
 		return ajaxResponse;
 	}
 	
@@ -61,7 +61,7 @@ public class FollowController {
 	@DeleteMapping("/follower")
 	public AjaxResponse deleteFollower(@RequestBody HashMap<String, Object> request) {
 		ResultDTO result=followBasicService.deleteFollower(request);
-		AjaxResponse ajaxResponse = new FollowAjaxRestResponseAdapter(request);
+		AjaxResponse ajaxResponse = new FollowAjaxRestResponseAdapter(result);
 		return ajaxResponse;
 	}
 	
@@ -69,7 +69,7 @@ public class FollowController {
 	@DeleteMapping("/followee")
 	public AjaxResponse deleteFollowee(@RequestBody HashMap<String, Object> request) {
 		ResultDTO result=followBasicService.deleteFollowee(request);
-		AjaxResponse ajaxResponse = new FollowAjaxRestResponseAdapter(request);
+		AjaxResponse ajaxResponse = new FollowAjaxRestResponseAdapter(result);
 		return ajaxResponse;
 	}
 	
@@ -77,7 +77,7 @@ public class FollowController {
 	@PutMapping("/followee")
 	public AjaxResponse addFollowee(@RequestBody HashMap<String, Object> request) {
 		ResultDTO result=followBasicService.insertFollowee(request);
-		AjaxResponse ajaxResponse = new FollowAjaxRestResponseAdapter(request);
+		AjaxResponse ajaxResponse = new FollowAjaxRestResponseAdapter(result);
 		return ajaxResponse;
 	}
 	

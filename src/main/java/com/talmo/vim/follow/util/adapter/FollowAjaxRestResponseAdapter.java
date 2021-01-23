@@ -1,6 +1,7 @@
 package com.talmo.vim.follow.util.adapter;
 
 import com.talmo.vim.follow.util.dto.FollowResultDTO;
+import com.talmo.vim.follow.util.dto.ResultDTO;
 
 public class FollowAjaxRestResponseAdapter extends AjaxResponseAdapter {
 
@@ -9,7 +10,7 @@ public class FollowAjaxRestResponseAdapter extends AjaxResponseAdapter {
 	private String message;
 	private Object data;
 	
-	public FollowAjaxRestResponseAdapter(Object adaptee) {
+	public FollowAjaxRestResponseAdapter(ResultDTO adaptee) {
 		super(adaptee);
 	}
 
