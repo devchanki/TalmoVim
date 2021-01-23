@@ -65,7 +65,7 @@ public class FollowController {
 		return ajaxResponse;
 	}
 	
-	/*팔로워 제거*/
+	/*팔로이 제거*/
 	@DeleteMapping("/followee")
 	public AjaxResponse deleteFollowee(@RequestBody HashMap<String, Object> request) {
 		ResultDTO result=followBasicService.deleteFollowee(request);
