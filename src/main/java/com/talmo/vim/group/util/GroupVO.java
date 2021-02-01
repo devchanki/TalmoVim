@@ -6,7 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter @Setter @Builder
+@AllArgsConstructor
+@Getter @Builder
 public class GroupVO {
 	private long groupId;
 	private long userId;

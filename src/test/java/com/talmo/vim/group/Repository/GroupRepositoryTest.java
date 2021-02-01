@@ -1,4 +1,4 @@
-package com.talmo.vim.group;
+package com.talmo.vim.group.Repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
+import com.talmo.vim.group.GroupRepository;
 import com.talmo.vim.group.util.GroupVO;
 
 import lombok.extern.slf4j.Slf4j;
@@ -17,7 +18,7 @@ import java.util.*;
 
 @Slf4j
 @SpringBootTest
-public class GroupTest {
+public class GroupRepositoryTest {
 	@Autowired
 	GroupRepository repo;
 	
