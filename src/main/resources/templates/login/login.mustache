@@ -1,9 +1,15 @@
 {{> layout/header}}
 
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+
 <script type="text/javascript">
 
-Kakao.init('YOUR API KEY');
+
+</script>
+
+<script type="text/javascript">
+
+Kakao.init('bd41daaf64d162d8cfc23fa90b7148f5');
 
 function kakaoLogin(){
 	Kakao.Auth.loginForm({
@@ -12,20 +18,37 @@ function kakaoLogin(){
 			Kakao.API.request({
 				url: '/v2/user/me',
 				success: function(res){
-					console.log(JSON.stringify(res));
 					var user = new Object();
 					user.id = res.id;
-					user.conn_dt = res.connected_at;
-					user.nickname = res.kakao_account.profile.nickname;
+					user.type = 'KAKAO';
+					user.nick = res.kakao_account.profile.nickname;
 					user.email = res.kakao_account.has_email ? res.kakao_account.email : null;
-					
+					user.birth = res.kakao_account.has_birthday ? res.kakao_account.birthday : null;
+					user.gender = res.kakao_account.has_gender ? res.kakao_account.gender : null;
 					alert(JSON.stringify(user));
-					
-				/* 	$.ajax({
-						url
+				 	$.ajax({
+				 		type: 'POST',
+						url: '/login/kakao',
+						contentType: 'application/json',
+						data: JSON.stringify(user),
+						//data: {id : res.id, type : 'KAKAO'},
+						success: function(data){
+							var data = JSON.parse(data);
+							if(data.result = "success"){
+								alert('로그인에 성공하였습니다.');
+								$('#loginUser').html(data.user + '님 반갑습니다.');
+								//location.href = '/';
+							} else {
+								alert('로그인에 실패했습니다.');
+								//location.href = '/';
+							}
+							
+						},
+						error: function(err){
+							alert('로그인 과정에서 에러가 발생했습니다.');
+						}
 					})
-					 */
-					 location.href = '/';
+					
 				},
 				fail: function(err){
 					alert(JSON.stringify(err));
@@ -44,4 +67,10 @@ function kakaoLogin(){
 	<img src="/img/kakao_login_medium_wide.png" />
 </a>
 
+{{^nickname}}
+<h2 id="loginUser">로그인 미완료</h2>
+{{/nickname}}
+{{#nickname}}
+<h2 id="loginUser">{{nickname}}님 환영합니다.</h2>
+{{/nickname}}
 {{> layout/footer}}
