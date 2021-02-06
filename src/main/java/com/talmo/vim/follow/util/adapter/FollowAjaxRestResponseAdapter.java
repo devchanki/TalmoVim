@@ -19,7 +19,6 @@ public class FollowAjaxRestResponseAdapter extends AjaxResponseAdapter {
 		this.status=dto.getStatus();
 		this.message=dto.getMessage();
 		this.data=dto.getData();
-		System.out.println("count:"+dto.getCount());
 	}
 
 }
