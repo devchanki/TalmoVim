@@ -1,0 +1,32 @@
+{
+	"folders": {},
+	"connections": {
+		"mariaDB-1772f3c8a0f-5087536c0fbc64a2": {
+			"provider": "mysql",
+			"driver": "mariaDB",
+			"name": "kgichan1.cafe24.com",
+			"save-password": true,
+			"show-system-objects": true,
+			"read-only": false,
+			"configuration": {
+				"host": "kgichan1.cafe24.com",
+				"port": "3306",
+				"url": "jdbc:mysql://kgichan1.cafe24.com:3306/",
+				"home": "mysql_client",
+				"type": "dev",
+				"auth-model": "native",
+				"handlers": {}
+			}
+		}
+	},
+	"connection-types": {
+		"dev": {
+			"name": "Development",
+			"color": "255,255,255",
+			"description": "Regular development database",
+			"auto-commit": true,
+			"confirm-execute": false,
+			"confirm-data-change": false
+		}
+	}
+}
