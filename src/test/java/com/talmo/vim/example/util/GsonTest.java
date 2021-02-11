@@ -1,11 +1,9 @@
-package com.talmo.vim.util;
+package com.talmo.vim.example.util;
 
 import org.json.JSONException;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.google.gson.Gson;
@@ -13,12 +11,10 @@ import com.google.gson.GsonBuilder;
 
 import lombok.Getter;
 import lombok.Setter;
-import net.minidev.json.JSONArray;
-import static net.minidev.json.JSONArray.*;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.HashMap;
-import java.util.Map;
 
 @SpringBootTest
 public class GsonTest {

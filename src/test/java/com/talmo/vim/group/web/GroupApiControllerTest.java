@@ -1,34 +1,29 @@
 package com.talmo.vim.group.web;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import java.awt.List;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.talmo.vim.common.ResponseStatus;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.talmo.vim.group.GroupRepository;
 import com.talmo.vim.group.util.GroupVO;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class GroupApiControllerTest {
 
@@ -43,9 +38,8 @@ class GroupApiControllerTest {
 	@Autowired
 	private GroupRepository repo;
 	
-	@BeforeAll 
-	public void setUp(@Autowired MockMvc mvc,
-			@Autowired WebApplicationContext webApplicationContext) {
+	@BeforeEach
+	public void setUp() {
 		mvc = MockMvcBuilders
 				.webAppContextSetup(webApplicationContext)
 				.build();
@@ -65,7 +59,7 @@ class GroupApiControllerTest {
 		MvcResult mvcRst = mvc.perform( 
 				post(url)
 				.contentType(MediaType.APPLICATION_JSON)
-				.content(new ObjectMapper().writeValueAsString(postMap))
+				.content(new Gson().toJson(postMap))
 				)
 		.andExpect(status().isOk())
 		.andReturn();
@@ -74,7 +68,7 @@ class GroupApiControllerTest {
 		
 		Map<String, Object> rstMap = (Map<String, Object>) gson.fromJson(mvcRst.getResponse().getContentAsString(), Map.class);
 		
-		assertThat(rstMap.get("status")).isEqualTo(200);
+		assertThat(rstMap.get("status")).isEqualTo(ResponseStatus.NOT_IMPLEMENTED.toString());
 		assertThat(rstMap.get("message")).isNotNull();
 		
 		Map<String, Object> data = (Map<String, Object>) rstMap.get("data");
