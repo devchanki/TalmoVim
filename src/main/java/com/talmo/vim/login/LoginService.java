@@ -13,16 +13,39 @@ public class LoginService {
 	private UserMapper userMapper;
 	
 	@Transactional(rollbackFor = Exception.class)
+	public int insertTalmoMember(HashMap param) throws Exception{
+		int result = 0;
+		
+		try {
+			result = userMapper.insertTalmoMember(param);
+			System.out.println(result);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
+	public HashMap getTalmoInfo(HashMap param) throws Exception{
+		return userMapper.getTalmoInfo(param);
+	}
+	
+	
+	@Transactional(rollbackFor = Exception.class)
 	public int insertSNSMember(HashMap param) throws Exception{
 		int result = 0;
 		
 		try {
 			result = userMapper.insertSNSMember(param);
-			
+			System.out.println(result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		return result;
+	}
+	
+	public HashMap getSNSInfo(HashMap param) throws Exception{
+		return userMapper.getSNSInfo(param);
 	}
 }

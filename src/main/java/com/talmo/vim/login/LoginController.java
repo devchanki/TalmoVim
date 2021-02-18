@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.gson.JsonObject;
 
 @Controller
-@RequestMapping(value = "/login")
+@RequestMapping(value = "/user")
 public class LoginController {
 
 	@RequestMapping(value = "/logout")
@@ -24,13 +24,19 @@ public class LoginController {
 		request.getSession().invalidate();
 		model.addAttribute("result", "logout success");
 		
-		return "redirect:/";
+		return "login";
 	}
 	
-	@RequestMapping(value = "/page")
+	@RequestMapping(value = "/login")
 	public String loginPage(HttpServletRequest request, ModelMap model) {
-		System.out.println(request.getSession().getAttribute("nickname"));
-		return "login/login";
+		return "login";
+	}
+	
+	@RequestMapping(value = "/doLogin")
+	public String doLogin(HttpServletRequest request, ModelMap model) {
+		
+		
+		return "index";
 	}
 	
 	@ResponseBody
