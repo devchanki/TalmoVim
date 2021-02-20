@@ -39,6 +39,12 @@ public class LoginController {
 		return "index";
 	}
 	
+	@RequestMapping(value = "/register")
+	public String registerPage(HttpServletRequest request, ModelMap model) {
+		return "register";
+	}
+	
+	
 	@ResponseBody
 	@RequestMapping(value = "/kakao")
 	public String kakaoLogin(@RequestBody Map<String, String> bodyObject, HttpServletRequest request, 
