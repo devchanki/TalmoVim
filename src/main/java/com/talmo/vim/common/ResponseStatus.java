@@ -1,7 +1,6 @@
 package com.talmo.vim.common;
 
 public enum ResponseStatus {
-    NONE,                           //미설정 (기본 Default 값)
     NOT_IMPLEMENTED,                //미구현 (controller 만 구현되어있거나 미구현된 서비스의 경우)
     SUCCESS,                        //정상 실행
     FAIL,                           //실패
