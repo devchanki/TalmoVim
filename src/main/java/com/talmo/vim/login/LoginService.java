@@ -26,7 +26,7 @@ public class LoginService {
 		return result;
 	}
 	
-	public HashMap getTalmoInfo(HashMap param) throws Exception{
+	public UserVO getTalmoInfo(HashMap param) throws Exception{
 		return userMapper.getTalmoInfo(param);
 	}
 	

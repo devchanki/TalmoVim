@@ -46,7 +46,7 @@
                                 </form>
                             </div>
                         </li>
-						{{# userId}}}
+						{{#userId}}
                         <!-- Nav Item - Alerts -->
                         <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
@@ -163,17 +163,17 @@
                                 <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
                             </div>
                         </li>
-                        {{/ userId}}
+                        {{/userId}}
 
                         <div class="topbar-divider d-none d-sm-block"></div>
                         
-						{{# userId}}
+						{{#userId}}
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{userId}</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{userId}}</span>
                                 <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg">
 
@@ -200,13 +200,13 @@
                                 </a>
                             </div>
                         </li>
-                        {{/ userId}}
+                        {{/userId}}
 						
-						{{^ userId}}					
+						{{^userId}}					
                         	<a class="nav-link" href="/user/login"  role="button">                              
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Login</span>
                             </a>                    
-                        {{/ userId}}
+                        {{/userId}}
                     </ul>
 
                 </nav>

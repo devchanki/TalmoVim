@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 public interface UserMapper {
 	int insertTalmoMember(HashMap param);
 	
-	HashMap getTalmoInfo(HashMap param);
+	UserVO getTalmoInfo(HashMap param);
 	
 	int insertSNSMember(HashMap param);
 	

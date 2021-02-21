@@ -2,22 +2,36 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.talmo.vim.login.UserMapper">
 
-<insert id="insertSNSMember" parameterType="HashMap">
-	<![CDATA[
-		INSERT INTO TMV_SNS_USER
-		(
-			SNS_TYPE, SNS_ID, SNS_EMAIL, SNS_NAME, SNS_NICK,
-			SNS_GENDER, SNS_BIRTH, SNS_TEL1, SNS_TEL2, SNS_TEL3,
-			SNS_TOKEN, SNS_INSERT_DT
-		)
-		VALUES
-		(
-			#{type}, #{id}, #{email}, #{name}, #{nick},
-			#{gender}, #{birth}, #{tel1}, #{tel2}, #{tel3},
-			#{token}, now()
-		)
-	]]>
-</insert>
+	<insert id="insertSNSMember" parameterType="HashMap">
+		<![CDATA[
+			INSERT INTO TMV_SNS_USER
+			(
+				SNS_TYPE, SNS_ID, SNS_EMAIL, SNS_NAME, SNS_NICK,
+				SNS_GENDER, SNS_BIRTH, SNS_TEL1, SNS_TEL2, SNS_TEL3,
+				SNS_TOKEN, SNS_INSERT_DT
+			)
+			VALUES
+			(
+				#{type}, #{id}, #{email}, #{name}, #{nick},
+				#{gender}, #{birth}, #{tel1}, #{tel2}, #{tel3},
+				#{token}, now()
+			)
+		]]>
+	</insert>
 
+	<select id="getTalmoInfo" parameterType="HashMap" resultType="com.talmo.vim.login.UserVO">
+		<![CDATA[
+			SELECT 
+				CODE, EMAIL, USER_ROLE, NAME, NICK,
+				GENDER, TEL1, TEL2, TEL3, ZIPCODE,
+				ADDR1, ADDR2, LEVEL, POINT, INSERT_DT,
+				UPDATE_DT, STATUS, LAST_LOGIN, SESSION_ID, SESSION_EXPIRE
+			FROM 
+				TMV_USER
+			WHERE
+				EMAIL = #{email}
+				AND PASSWORD = #{password}
+		]]>
+	</select>
 
 </mapper>
