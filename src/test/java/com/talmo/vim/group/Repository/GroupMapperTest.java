@@ -36,7 +36,6 @@ public class GroupMapperTest {
 		}
 		
 		log.info("Succes to insert all test_group!" );
-		
 	}
 	
 	@AfterAll
@@ -46,7 +45,6 @@ public class GroupMapperTest {
 			long rstCount = repo.deleteGroup(vo.getGroupId());
 			assertThat(rstCount).isNotEqualTo(0L);
 		}
-		
 
 		log.info("Succes to remove all test_group!");
 	}
@@ -70,7 +68,6 @@ public class GroupMapperTest {
 		
 		assertThat(rstCount).isNotEqualTo(0L);
 		log.info("Succes to remove test_group! => id: " + vo.getGroupId() );
-		
 	}
 	
 	@Test

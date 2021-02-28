@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Entity
+@Entity @Table(name = "TMV_GROUP")
 @Getter @NoArgsConstructor
 public class Group {
     @Id @GeneratedValue

@@ -13,18 +13,33 @@ import javax.persistence.Id;
 @Getter @NoArgsConstructor
 public class User {
 
-    @Id @Column(name = "USER_ID")
+    @Id @Column(name = "CODE")
     @GeneratedValue
     private Long id;
 
-    @Column(name = "USER_EMAIL")
+    @Column(name = "EMAIL")
     private String email;
 
-    @Column(name = "USER_NICKNAME")
+    @Column(name = "PASSWORD")
+    private String password;
+
+    @Column(name = "USER_ROLE")
+    private String userRole;
+
+    @Column(name = "NICK")
     private String nickname;
 
-    @Column(name = "USER_PASSWORD")
-    private String password;
+    @Column(name = "GENDER")
+    private String gender;
+
+    @Column(name = "TEL1")
+    private String tel1;
+
+    @Column(name = "TEL2")
+    private String tel2;
+
+    @Column(name = "TEL3")
+    private String tel3;
 
     @Builder
     public User(String email, String nickname, String password) {
