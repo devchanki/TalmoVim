@@ -25,11 +25,6 @@ public class GroupApiController {
 		//TODO : (KHJ) 로그인 유저 확인 세션 필요
 		log.debug("New param : " + map);
 
-		ResponseDto response = new ResponseDto();
-		response.setStatus(ResponseStatus.NOT_IMPLEMENTED);
-		response.setMessage("send test");
-		Object rst = null;
-		response.setData(map);
-		return response;
+		return null;
 	}
 }

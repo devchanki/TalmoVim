@@ -23,13 +23,11 @@ public class ExampleApiController {
 
     @GetMapping("common-response-dto")
     public ResponseDto commomResponseDto() {
-        ResponseDto response = new ResponseDto();
-
-        response.setStatus(ResponseStatus.SUCCESS);
-        response.setMessage( "This is common response to Dto");
-
-        response.setData(createExampleData());
-        return response;
+        return ResponseDto.builder()
+                .status(ResponseStatus.SUCCESS)
+                .message("This is common response to Dto")
+                .data(createExampleData())
+                .build();
     }
 
     @AllArgsConstructor

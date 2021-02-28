@@ -1,16 +1,14 @@
 package com.talmo.vim.group;
 
-import org.apache.ibatis.annotations.Mapper;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.talmo.vim.group.util.GroupVO;
-import java.util.*;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
-@Repository @Mapper
-public interface GroupRepository {
-	public long insertGroup(GroupVO vo);
+@Repository
+@Transactional
+public interface GroupRepository extends JpaRepository<Group, Long> {
 
-	public long deleteGroup(long groupId);
-	
-	public GroupVO selectGroup(long groupId);
 }

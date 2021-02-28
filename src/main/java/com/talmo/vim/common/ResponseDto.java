@@ -1,28 +1,24 @@
 package com.talmo.vim.common;
 
-import com.google.gson.annotations.Expose;
+import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
 
-@Getter @Setter
+@Getter
 public class ResponseDto {
     ResponseStatus status;
-    @Expose
     String message;
     Object data;
 
     public ResponseDto() {
-        status = ResponseStatus.NONE;
-        message = null;
+        status = ResponseStatus.NOT_IMPLEMENTED;
+        message = "This Control is not Implemented yet";
         data = null;
     }
 
-    @Override
-    public String toString() {
-        return "{" +
-                    "status=" + status +
-                    ", message='" + message + '\'' +
-                    ", data=" + data +
-                '}';
+    @Builder
+    public ResponseDto(ResponseStatus status, String message, Object data) {
+        this.status = status;
+        this.message = message;
+        this.data = data;
     }
 }
