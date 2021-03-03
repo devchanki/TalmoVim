@@ -1,4 +1,4 @@
-package com.talmo.vim.group.Repository;
+package com.talmo.vim.group.repository;
 
 public class GroupServiceTest {
 }
