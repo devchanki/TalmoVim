@@ -1,0 +1,81 @@
+{{> layout/header}}
+<body id="page-top">
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+    {{ > layout/sidemenu }}
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                {{ >layout/topbar }}
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">QnA</h1>
+                        <a href="/qna/insert" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                class="fas fa-download fa-sm text-white-50"></i>상담 글 남기기</a>
+                    </div>
+                   
+
+                    <!-- Content Row -->
+                                       <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">내 QnA 리스트</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>게시글 번호</th>
+                                            <th>제목</th>
+                                            <th>답변 여부</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    	<tr>
+                                    		<td>1</td>
+                                    		<td>원현진 상담</td>
+                                    		<td>완료</td>
+                                    	</tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th>게시글 번호</th>
+                                            <th>제목</th>
+                                            <th>답변 여부</th>
+                                        </tr>
+                                    </tfoot>
+                                    </tbody>
+                                </table>
+                            </div>
+                            </div>
+                </div>
+                <!-- /.container-fluid -->
+</div>
+            </div>
+            <!-- End of Main Content -->
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Your Website 2020</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+</div>
+<!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+{{> layout/footer}}
+
+
+

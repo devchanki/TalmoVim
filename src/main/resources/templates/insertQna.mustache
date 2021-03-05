@@ -1,0 +1,103 @@
+{{> layout/header}}
+<body id="page-top">
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+    {{ > layout/sidemenu }}
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                {{ >layout/topbar }}
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+
+			<div
+				class="d-sm-flex align-items-center justify-content-between mb-4">
+				<h1 class="h3 mb-0 text-gray-800">Qna를 작성해보세요</h1>
+			</div>
+			
+			<div class="col-lg-12">
+
+                            <!-- Circle Buttons -->
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Qna 작성</h6>
+                                </div>
+                                <div class="card-body">
+         							<div class="row">
+							<div class="col-12">
+								<form action="url"
+									method="post" class="form-horizontal">
+
+
+									
+									<label for="title">카테고리 / 제목</label>
+									<div class="input-group mb-3">
+									  <div class="input-group-prepend">
+									    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">카테고리</button>
+									    <div class="dropdown-menu">
+									      <a class="dropdown-item" href="#">기타</a>
+									      <a class="dropdown-item" href="#">개선 사항</a>
+									      <div role="separator" class="dropdown-divider"></div>
+									      <a class="dropdown-item" href="#">신고</a>
+									    </div>
+									  </div>
+									  <input type="text" name="title" class="form-control" placeholder="제목">
+									</div>
+									<div class="row">
+									<div class="col">
+										<label for="basic-url">이메일</label>
+										<div class="input-group mb-3">
+										  <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+										</div>
+									</div>
+										
+									<div class="col">
+										<label for="tel">전화번호</label>
+										<div class="input-group mb-3">
+										  <input type="text" class="form-control" name="tel" id="basic-url" aria-describedby="basic-addon3">
+										</div>
+									</div>
+									</div>
+
+<label for="contents">상세 내용</label>
+
+  <textarea class="form-control" aria-label="With textarea" name="contents"></textarea>
+
+									<div class="form-content mt-3">
+										<div class="col-md-12 text-center">
+											<input type="button" class="btn btn-primary btn-sm"
+												id="cancel" value="취소"> <input type="submit"
+												class="btn btn-primary btn-sm" value="작성하기" />
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+                                </div>
+                            </div>
+
+                </div>
+                <!-- /.container-fluid -->
+</div>
+            </div>
+            <!-- End of Main Content -->
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Your Website 2020</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+</div>
+<!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+{{> layout/footer}}
