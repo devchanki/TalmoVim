@@ -1,0 +1,47 @@
+{{> layout/header}}
+
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script type="text/javascript">
+
+Kakao.init('bd41daaf64d162d8cfc23fa90b7148f5');
+
+function kakaoLogin(){
+	Kakao.Auth.loginForm({
+		success: function(auth){
+			
+			Kakao.API.request({
+				url: '/v2/user/me',
+				success: function(res){
+					console.log(JSON.stringify(res));
+					var user = new Object();
+					user.id = res.id;
+					user.conn_dt = res.connected_at;
+					user.nickname = res.kakao_account.profile.nickname;
+					user.email = res.kakao_account.has_email ? res.kakao_account.email : null;
+					
+					alert(JSON.stringify(user));
+					
+				/* 	$.ajax({
+						url
+					})
+					 */
+					 location.href = '/';
+				},
+				fail: function(err){
+					alert(JSON.stringify(err));
+				}
+			})
+		},
+		fail: function(err){
+			alert(JSON.stringify(err));
+		}
+	});
+}
+
+</script>
+<p>탈모 뷤~!~!~!~!~!~!</p>
+<a id="kakao" onclick="kakaoLogin()" style="cursor: pointer">
+	<img src="/img/kakao_login_medium_wide.png" />
+</a>
+
+{{> layout/footer}}

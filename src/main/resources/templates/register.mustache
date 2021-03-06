@@ -33,40 +33,33 @@
                                 
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-user" id="userNick"
-                                            placeholder="닉네임">
-                                    </div>
-                                    <div class="col-sm-6">
                                         <input type="text" class="form-control form-control-user" id="userName"
                                             placeholder="이름">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control form-control-user" id="userNick"
+                                            placeholder="닉네임">
                                     </div>
                                 </div>
                                 
                                 <div class="form-group row">
                                     <div class="col-sm-4 mb-3 mb-sm-0">
                                         <input type="text" class="form-control form-control-user"
-                                            id="userTel1" placeholder="전화번호 앞자리">
+                                            id="userTel1" maxlength="4" placeholder="전화번호 앞자리">
                                     </div>
                                     <div class="col-sm-4">
                                         <input type="text" class="form-control form-control-user"
-                                            id="userTel2" placeholder="전화번호 중간자리">
+                                            id="userTel2" maxlength="4" placeholder="전화번호 중간자리">
                                     </div>
                                     
                                     <div class="col-sm-4">
                                         <input type="text" class="form-control form-control-user"
-                                            id="userTel3" placeholder="전화번호 뒷자리">
+                                            id="userTel3" maxlength="4" placeholder="전화번호 뒷자리">
                                     </div>
                                 </div>
    
-                                <a href="/user/doRegister" class="btn btn-primary btn-user btn-block">
+                                <a href="javascript:doSignUp()" class="btn btn-primary btn-user btn-block">
                                     탈모회원 입장!
-                                </a>
-                                <hr>
-                                <a href="index.html" class="btn btn-google btn-user btn-block">
-                                    <i class="fab fa-google fa-fw"></i> Register with Google
-                                </a>
-                                <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                                    <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
                                 </a>
                             </form>
                             <hr>
@@ -74,13 +67,106 @@
                                 <a class="small" href="forgot-password.html">머리카락을 잊어버렸나요?</a>
                             </div>
                             <div class="text-center">
-                                <a class="small" href="login.html">이미 탈모회원인가요? 로그인으로!</a>
+                                <a class="small" href="/user/login">이미 탈모회원인가요? 로그인으로!</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
+    
+    <script type="text/javascript">
+    	function doSignUp(){
+    		var email = $('#userEmail').val();
+    		var password = $('#userPassword').val()
+    		var passwordRepeat = $('#userPasswordRepeat').val();
+    		var name = $('#userName').val();
+    		var nick = $('#userNick').val();
+    		var tel1 = $('#userTel1').val();
+    		var tel2 = $('#userTel2').val();
+    		var tel3 = $('#userTel3').val();
+    		
+    		if(email == ''){
+    			alert('이메일을 입력해주세요!');
+    			$('#userEmail').focus();
+    			return;
+    		}
+    		
+    		if(password == ''){
+    			alert('비밀번호를 입력해주세요!');
+    			$('#userPassword').focus();
+    			return;
+    		}
+    		
+    		if(passwordRepeat == ''){
+    			alert('비밀번호 재입력을 입력해주세요!');
+    			$('#userPasswordRepeat').focus();
+    			return;
+    		}
+    		
+    		if(name == ''){
+    			alert('이름을 입력해주세요!');
+    			$('#userName').focus();
+    			return;
+    		}
+    		
+    		if(nick == ''){
+    			alert('닉네임을 입력해주세요!');
+    			$('#userNick').focus();
+    			return;
+    		}
+    			
+    		if(tel1 == ''){
+    			alert('전화번호 앞자리를 입력해주세요!');
+    			$('#userTel1').focus();
+    			return;
+    		}
+    		
+    		if(tel2 == ''){
+    			alert('전화번호 중간자리를 입력해주세요!');
+    			$('#userTel2').focus();
+    			return;
+    		}
+    		
+    		if(tel3 == ''){
+    			alert('전화번호 뒷자리를 입력해주세요!');
+    			$('#userTel3').focus();
+    			return;
+    		}
+    		
+    		if(password != passwordRepeat){
+    			alert('입력하신 비밀번호와 재입력이 같지 않습니다!');
+    			$('userPasswordRepeat').focus();
+    			return;
+    		}
+ 			
+    		$.ajax({
+    			url: '/user/doRegister',
+    			type: 'post',
+    			data: {
+    				email : email,
+    				password : password,
+    				name : name,
+    				nick : nick,
+    				tel1 : tel1,
+    				tel2 : tel2,
+    				tel3 : tel3
+    			},
+    			dataType: 'json',
+    			success: function(data){
+    				if(data.result == 'success'){
+    					alert('회원가입이 완료되었습니다!');
+    					//location.href = '/user/login';
+    				} else if(data.result == 'duplicate') {
+    					alert('이미 가입된 회원입니다!');
+    					location.href = '/user/login';
+    				}
+    			}, error: function(err){
+    				alert('에러가 발생하였습니다!');
+    			}
+    		});	
+    	}
+    </script>
+    
 {{> layout/footer}}    

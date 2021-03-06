@@ -30,6 +30,10 @@ public class LoginService {
 		return userMapper.getTalmoInfo(param);
 	}
 	
+	public UserVO getTalmoInfoByCode(HashMap param) throws Exception{
+		return userMapper.getTalmoInfoByCode(param);
+	}
+	
 	
 	@Transactional(rollbackFor = Exception.class)
 	public int insertSNSMember(HashMap param) throws Exception{

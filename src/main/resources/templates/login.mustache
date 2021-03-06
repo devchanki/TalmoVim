@@ -1,4 +1,55 @@
 {{> layout/header}}
+
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script type="text/javascript">
+	
+	Kakao.init('bd41daaf64d162d8cfc23fa90b7148f5');
+	
+	function kakaoLogin(){
+		Kakao.Auth.loginForm({
+			success: function(auth){
+				
+				Kakao.API.request({
+					url: '/v2/user/me',
+					success: function(res){
+						var user = new Object();
+						user.snsId = res.id;
+						user.snsEmail = res.kakao_account.has_email ? res.kakao_account.email : null;
+						user.snsType = "kakao";
+						
+						$.ajax({
+							url: '/user/snslogin',
+							type: 'post',
+							contentType: "application/json",
+							data : JSON.stringify(user),
+							dataType : 'json',
+							success : function(data){
+								if(data.result == 'success'){
+									alert('성공');
+								} else if(data.result == 'nomember'){
+									alert('등록된 회원이 없어 회원가입 창으로 넘어갑니다.')
+									location.href = '/user/register';
+								} else {
+									alert('로그인에 실패하였습니다.');
+								}
+							}, error: function(error){
+								alert('ajax 실패');
+							}
+						});
+
+					},
+					fail: function(err){
+						alert(JSON.stringify(err));
+					}
+				})
+			},
+			fail: function(err){
+				alert(JSON.stringify(err));
+			}
+		});
+	}
+</script>
+
 <body class="bg-gradient-primary">
 
     <div class="container">
@@ -39,7 +90,7 @@
                                         </a>
                                         <hr>
                                         <!-- SNS 로그인 부분 시작 -->
-                                        <a href="index.html" class="btn btn-google btn-user btn-block">
+                                        <a class="btn btn-google btn-user btn-block" onclick="kakaoLogin()">
                                             <i class="fab fa-google fa-fw"></i> Login with Google
                                         </a>
                                         <a href="index.html" class="btn btn-facebook btn-user btn-block">

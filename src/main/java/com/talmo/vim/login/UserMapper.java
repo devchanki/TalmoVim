@@ -10,6 +10,8 @@ public interface UserMapper {
 	
 	UserVO getTalmoInfo(HashMap param);
 	
+	UserVO getTalmoInfoByCode(HashMap param);
+	
 	int insertSNSMember(HashMap param);
 	
 	HashMap getSNSInfo(HashMap param);

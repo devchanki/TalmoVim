@@ -2,19 +2,36 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.talmo.vim.login.UserMapper">
 
+	<insert id="insertTalmoMember" parameterType="HashMap">
+	<![CDATA[
+		INSERT INTO TMV_USER
+		(
+			EMAIL, PASSWORD, USER_ROLE, NAME, NICK,
+			GENDER, TEL1, TEL2, TEL3, ZIPCODE,
+			ADDR1, ADDR2, LEVEL, POINT, DI,
+			INSERT_DT, UPDATE_DT, STATUS, LAST_LOGIN_DT, SESSION_ID,
+			SESSION_EXPIRE_DT
+		)
+		VALUES
+		(
+			#{email}, #{password}, 'ROLE_USER', #{name}, #{nick},
+			'1', #{tel1}, #{tel2}, #{tel3}, null,
+			null, null, 0, 0, null,
+			now(), null, 'USE', null, null,
+			null
+		)
+	]]>
+	</insert>
+	
 	<insert id="insertSNSMember" parameterType="HashMap">
 		<![CDATA[
 			INSERT INTO TMV_SNS_USER
 			(
-				SNS_TYPE, SNS_ID, SNS_EMAIL, SNS_NAME, SNS_NICK,
-				SNS_GENDER, SNS_BIRTH, SNS_TEL1, SNS_TEL2, SNS_TEL3,
-				SNS_TOKEN, SNS_INSERT_DT
+				SNS_ID, SNS_TYPE, SNS_EMAIL, SNS_INSERT_DT, SNS_TOKEN
 			)
 			VALUES
 			(
-				#{type}, #{id}, #{email}, #{name}, #{nick},
-				#{gender}, #{birth}, #{tel1}, #{tel2}, #{tel3},
-				#{token}, now()
+				#{snsId}, #{snsType}, #{snsEmail}, now(), null
 			)
 		]]>
 	</insert>
@@ -25,7 +42,7 @@
 				CODE, EMAIL, USER_ROLE, NAME, NICK,
 				GENDER, TEL1, TEL2, TEL3, ZIPCODE,
 				ADDR1, ADDR2, LEVEL, POINT, INSERT_DT,
-				UPDATE_DT, STATUS, LAST_LOGIN, SESSION_ID, SESSION_EXPIRE
+				UPDATE_DT, STATUS, LAST_LOGIN_DT, SESSION_ID, SESSION_EXPIRE_DT
 			FROM 
 				TMV_USER
 			WHERE
@@ -33,5 +50,28 @@
 				AND PASSWORD = #{password}
 		]]>
 	</select>
-
+	
+	<select id="getTalmoInfoByCode" parameterType="hashMap" resultType="com.talmo.vim.login.UserVO">
+		<![CDATA[
+			SELECT
+				CODE, EMAIL, USER_ROLE, NAME, NICK,
+				GENDER, TEL1, TEL2, TEL3, ZIPCODE,
+				ADDR1, ADDR2, LEVEL, POINT, INSERT_DT,
+				UPDATE_DT, STATUS, LAST_LOGIN_DT, SESSION_ID, SESSION_EXPIRE_DT
+			FROM
+				TMV_USER
+			WHERE
+				CODE = #{TMV_CODE}
+		]]>
+	</select>
+	
+	<select id="getSNSInfo" parameterType="HashMap" resultType="hashMap">
+		SELECT 
+			SNS_CODE, SNS_ID, SNS_TYPE, SNS_EMAIL, SNS_INSERT_DT, TMV_CODE
+		FROM 
+			TMV_SNS_USER
+		WHERE
+			SNS_ID = #{snsId}
+			AND SNS_TYPE = #{snsType}
+	</select>
 </mapper>
