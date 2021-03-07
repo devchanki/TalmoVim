@@ -1,8 +1,10 @@
 package com.talmo.vim.group;
 
+import com.talmo.vim.group.dto.GroupDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
@@ -19,14 +21,21 @@ public class GroupService {
 	EntityManager em;
 
 	@Transactional
-	public Group createNewGroup(long userId, Group group ) {
-		//TODO: check login session
+	public GroupDto.Response createNewGroup(Long userId, GroupDto.Create param) {
+		//TODO: login session 체크 및 Memeber Entity 추가 (master 권한)
 		//Long userid;
-		return groupRepo.save(group);
+		Group group = param.toEntity();
+		group = groupRepo.save(group);
+		GroupDto.Response rst = new GroupDto.Response(group);
+
+		return rst;
 	}
 
-	public Group findGroup() {
-		return null;
+	public GroupDto.Response findGroup( Long groupId) {
+		Group group = groupRepo.findById(groupId).orElseThrow(EntityExistsException::new);
+
+		GroupDto.Response rst = new GroupDto.Response(group);
+		return rst;
 	}
 
 	public Group findGroups() {

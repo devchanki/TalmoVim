@@ -7,7 +7,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.util.HashMap;
 import java.util.Map;
 
+import com.google.gson.JsonElement;
+import com.talmo.vim.common.ResponseDto;
 import com.talmo.vim.common.ResponseStatus;
+import com.talmo.vim.group.Group;
+import com.talmo.vim.group.GroupRepository;
+import com.talmo.vim.group.dto.GroupDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +25,9 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import com.google.gson.Gson;
-import com.talmo.vim.group.GroupMapper;
-import com.talmo.vim.group.dto.GroupVO;
+
+import javax.persistence.EntityNotFoundException;
+import javax.transaction.Transactional;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class GroupApiControllerTest {
@@ -35,7 +41,7 @@ class GroupApiControllerTest {
 	private MockMvc mvc;
 	
 	@Autowired
-	private GroupMapper repo;
+	private GroupRepository repo;
 	
 	@BeforeEach
 	public void setUp() {
@@ -45,7 +51,8 @@ class GroupApiControllerTest {
 	}
 	
 	@Test
-	public void post_new() throws Exception {
+	@Transactional
+	public void newGroup() throws Exception {
 			String name = "testTeamName";
 			String desc = "this is testTeam dese";
 			Map<String, Object> postMap = new HashMap<>();
@@ -65,21 +72,24 @@ class GroupApiControllerTest {
 
 			Gson gson = new Gson();
 
-			Map<String, Object> rstMap = (Map<String, Object>) gson.fromJson(mvcRst.getResponse().getContentAsString(), Map.class);
+			ResponseDto response = gson.fromJson(mvcRst.getResponse().getContentAsString(), ResponseDto.class);
 
-			assertThat(rstMap.get("status")).isEqualTo(ResponseStatus.NOT_IMPLEMENTED.toString());
-			assertThat(rstMap.get("message")).isNotNull();
+			assertThat(response.getStatus()).isEqualTo(ResponseStatus.SUCCESS);
+			assertThat(response.getMessage()).isNotNull();
 
-			Map<String, Object> data = (Map<String, Object>) rstMap.get("data");
-			long teamId = (long) data.get("team_id");
+			GroupDto.Response dto = gson.fromJson(gson.toJsonTree(response.getData()) , GroupDto.Response.class);
+			Long teamId = dto.getGroupId();
 
 			assertThat(teamId).isNotEqualTo(-1L);
-			GroupVO vo = repo.selectGroup(teamId);
+			Group group = repo.findById(teamId).orElseThrow(EntityNotFoundException::new);
 
-			assertThat(vo.getGroupName()).isEqualTo(name);
-			assertThat(vo.getGroupDesc()).isEqualTo(desc);
+			assertThat(group.getName()).isEqualTo(name);
+			assertThat(group.getName()).isEqualTo(dto.getGroupName());
 
-			repo.deleteGroup(teamId);
+			assertThat(group.getDesc()).isEqualTo(desc);
+			assertThat(group.getDesc()).isEqualTo(dto.getGroupDesc());
+
+			repo.delete(group);
 	}
 
 }
