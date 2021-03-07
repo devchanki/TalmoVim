@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.talmo.vim.group.GroupMapper">
+	<!-- Entity 구현으로 인한 미사용 -->
+	<!--
 	<insert id="insertGroup"
 		parameterType="com.talmo.vim.group.dto.GroupVO"
 		useGeneratedKeys="true" keyProperty="groupId" keyColumn="GROUP_ID">
 		INSERT INTO
-		TMV_GROUP (`GROUP_NAME`, `GROUP_DESC`, `USER_ID`) VALUES
-		(#{groupName}, #{groupDesc}, #{userId});
+		TMV_GROUP (`GROUP_NAME`, `GROUP_DESC`, `GROUP_STATUS`) VALUES
+		(#{name}, #{desc}, #{status});
 	</insert>
 
 	<delete id="deleteGroup" parameterType="long">
@@ -16,8 +18,8 @@
 
 	<select id="selectGroup" parameterType="long"
 		resultType="com.talmo.vim.group.dto.GroupVO">
-		SELECT GROUP_ID AS groupId, USER_ID AS userId, GROUP_NAME
-		AS groupName, GROUP_DESC AS groupDesc FROM TMV_GROUP WHERE GROUP_ID =
+		SELECT GROUP_ID AS id, GROUP_NAME AS name, GROUP_DESC AS desc, Group FROM TMV_GROUP WHERE GROUP_ID =
 		#{groupId}
 	</select>
+	-->
 </mapper>

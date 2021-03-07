@@ -1,85 +1,89 @@
 package com.talmo.vim.user;
 
+import com.talmo.vim.group.Member;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity @Table(name = "TMV_USER")
 @Getter @NoArgsConstructor
 public class User {
 
-    @Id @Column(name = "CODE")
+    @Id @Column(name = "USER_ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "EMAIL", nullable = false)
+    @Column(name = "USER_EMAIL", nullable = false)
     private String email;
 
-    @Column(name = "PASSWORD", nullable = false)
+    @Column(name = "USER_PASSWORD", nullable = false)
     private String password;
 
     @Column(name = "USER_ROLE", nullable = false)
     private String userRole;
 
-    @Column(name = "NAME", nullable = false)
+    @Column(name = "USER_NAME", nullable = false)
     private String name;
 
-    @Column(name = "NICK", nullable = false)
+    @Column(name = "USER_NICK", nullable = false)
     private String nickname;
 
-    @Column(name = "GENDER", nullable = false)
+    @Column(name = "USER_GENDER", nullable = false)
     private String gender;
 
-    @Column(name = "TEL1", nullable = false)
+    @Column(name = "USER_TEL1", nullable = false)
     private String tel1;
 
-    @Column(name = "TEL2", nullable = false)
+    @Column(name = "USER_TEL2", nullable = false)
     private String tel2;
 
-    @Column(name = "TEL3", nullable = false)
+    @Column(name = "USER_TEL3", nullable = false)
     private String tel3;
 
-    @Column(name = "ZIPCODE")
+    @Column(name = "USER_ZIPCODE")
     private String zipcode;
 
-    @Column(name = "ADDR1")
+    @Column(name = "USER_ADDR1")
     private String addr1;
 
-    @Column(name = "ADDR2")
+    @Column(name = "USER_ADDR2")
     private String addr2;
 
-    @Column(name = "LEVEL")
+    @Column(name = "USER_LEVEL")
     private int level;
 
-    @Column(name = "POINT")
+    @Column(name = "USER_POINT")
     private int point;
 
-    @Column(name = "DI")
+    @Column(name = "USER_DI")
     private String di;
 
     @CreatedDate
-    @Column(name = "INSERT_DT")
+    @Column(name = "USER_INSERT_DT")
     private LocalDateTime insertDT;
 
-    @Column(name = "UPDATE_DT")
+    @Column(name = "USER_UPDATE_DT")
     private LocalDateTime updateDT;
 
-    @Column(name = "STATUS", nullable = false)
+    @Column(name = "USER_STATUS", nullable = false)
     private String status;
 
-    @Column(name = "LAST_LOGIN_DT")
+    @Column(name = "USER_LAST_LOGIN_DT")
     private LocalDateTime lastLoginDT;
 
-    @Column(name = "SESSION_ID")
+    @Column(name = "USER_SESSION_ID")
     private String sessionId;
 
-    @Column(name = "SESSION_EXPIRE_DT")
+    @Column(name = "USER_SESSION_EXPIRE_DT")
     private LocalDateTime sessionExpireDT;
+
+    @OneToMany(mappedBy = "user")
+    private List<Member> members;
 
     @Builder
     public User(String email, String password, String userRole, String name,String nickname, String gender,
@@ -99,8 +103,8 @@ public class User {
     }
 
     //TODO : password 암호화를 어디에 둘것인가? (service, security, entity, etc)
-    public void changePassword() {
-        this.password = password;
+    public void changePassword(String newPassword) {
+        this.password = newPassword;
         this.updateDT = LocalDateTime.now();
     }
 

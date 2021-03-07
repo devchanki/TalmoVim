@@ -1,4 +1,4 @@
-package com.talmovim.configure;
+package com.talmo.vim.configure;
 
 import java.util.concurrent.TimeUnit;
 
