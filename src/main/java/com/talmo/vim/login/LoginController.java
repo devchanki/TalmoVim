@@ -58,8 +58,8 @@ public class LoginController {
 			if(userInfo == null) {
 				result = "fail";
 			} else {
-				System.out.println(userInfo);
-				String nickname = userInfo.nick;
+				System.out.println(userInfo.user_nick);
+				String nickname = userInfo.user_nick;
 				request.getSession().setAttribute("userId", nickname);
 				result = "success";
 			}
@@ -89,9 +89,7 @@ public class LoginController {
 				
 				if(snsInfo == null) {
 					result = "nomember";
-					session.setAttribute("snsId", map.get("snsId"));
-					session.setAttribute("snsType", map.get("snsType"));
-					session.setAttribute("snsEmail", map.get("snsEmail"));
+					
 				} else {
 					UserVO userInfo = loginService.getTalmoInfo(snsInfo);
 					
@@ -111,26 +109,32 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value = "/register")
-	public String registerPage(HttpServletRequest request, ModelMap model) {
+	public String registerPage(@RequestParam HashMap<String, Object> map, HttpServletRequest request, ModelMap model) {
+		System.out.println(map);
+		model.addAttribute("snsInfo", map.isEmpty() ? null: map );
+		
 		return "register";
 	}
 	
 	@ResponseBody
 	@RequestMapping(value = "/doRegister")
-	public String doRegister(HttpServletRequest request, ModelMap model) {
+	public String doRegister(@RequestBody HashMap<String, Object> param, HttpServletRequest request, ModelMap model) {
 		String result = "";
-		
-		HashMap param = new HashMap();
-		Enumeration<String> data = request.getParameterNames();
-		while(data.hasMoreElements()) {
-			String key = data.nextElement();
-			String value = request.getParameter(key);
-			param.put(key, value);
-		}
+		System.out.println(param);
 		
 		try {
 			int insertResult = loginService.insertTalmoMember(param);
 			System.out.println(insertResult);
+			
+			
+			
+			if(param.get("snsId") != null) {
+				UserVO userInfo = loginService.getTalmoInfo(param);
+				param.put("userId", userInfo.user_id);
+				int insertSNSResult = loginService.insertSNSMember(param);
+				System.out.println(insertSNSResult);
+			}
+			
 			result = "success";
 			
 		} catch (Exception e) {

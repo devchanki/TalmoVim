@@ -27,8 +27,21 @@
 								if(data.result == 'success'){
 									alert('성공');
 								} else if(data.result == 'nomember'){
-									alert('등록된 회원이 없어 회원가입 창으로 넘어갑니다.')
-									location.href = '/user/register';
+									alert('등록된 회원이 없어 회원가입 창으로 넘어갑니다.');
+									
+									var frm = $('<form></form>');
+									
+									frm.attr('name', 'snsInfo');
+									frm.attr('method', 'post');
+									frm.attr('action', '/user/register');
+									
+									frm.append($('<input/>', {type: 'hidden', name: 'snsId', value: user.snsId}));
+									frm.append($('<input/>', {type: 'hidden', name: 'snsType', value: user.snsType}));
+									frm.append($('<input/>', {type: 'hidden', name: 'snsEmail', value: user.snsEmail}));
+									
+									frm.appendTo('body');
+									
+									frm.submit();
 								} else {
 									alert('로그인에 실패하였습니다.');
 								}

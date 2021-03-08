@@ -19,7 +19,6 @@
                                     <input type="email" class="form-control form-control-user" id="userEmail"
                                         placeholder="이메일">
                                 </div>
-                                
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="password" class="form-control form-control-user"
@@ -87,7 +86,7 @@
     		var tel2 = $('#userTel2').val();
     		var tel3 = $('#userTel3').val();
     		
-    		if(email == ''){
+			if(email == ''){
     			alert('이메일을 입력해주세요!');
     			$('#userEmail').focus();
     			return;
@@ -140,19 +139,26 @@
     			$('userPasswordRepeat').focus();
     			return;
     		}
+    		
+    		var register = new Object();
+    		register.email = email;
+    		register.password = password;
+    		register.name = name;
+    		register.nick = nick;
+    		register.tel1 = tel1;
+    		register.tel2 = tel2;
+    		register.tel3 = tel3;
+{{#snsInfo}}
+    			register.snsId = '{{snsInfo.snsId}}' || null;
+	    		register.snsType = '{{snsInfo.snsType}}' || null;
+	    		register.snsEmail = '{{snsInfo.snsEmail}}' || null;
+{{/snsInfo}}
  			
     		$.ajax({
     			url: '/user/doRegister',
     			type: 'post',
-    			data: {
-    				email : email,
-    				password : password,
-    				name : name,
-    				nick : nick,
-    				tel1 : tel1,
-    				tel2 : tel2,
-    				tel3 : tel3
-    			},
+    			contentType: 'application/json',
+    			data: JSON.stringify(register),
     			dataType: 'json',
     			success: function(data){
     				if(data.result == 'success'){
