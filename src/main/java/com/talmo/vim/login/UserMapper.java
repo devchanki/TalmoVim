@@ -14,5 +14,5 @@ public interface UserMapper {
 	
 	int insertSNSMember(HashMap param);
 	
-	HashMap getSNSInfo(HashMap param);
+	HashMap<String, String> getSNSInfo(HashMap<String, String> param);
 }

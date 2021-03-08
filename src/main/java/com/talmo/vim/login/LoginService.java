@@ -49,7 +49,7 @@ public class LoginService {
 		return result;
 	}
 	
-	public HashMap getSNSInfo(HashMap param) throws Exception{
+	public HashMap<String, String> getSNSInfo(HashMap<String, String> param) throws Exception{
 		return userMapper.getSNSInfo(param);
 	}
 }

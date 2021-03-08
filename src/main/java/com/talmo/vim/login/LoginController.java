@@ -85,13 +85,13 @@ public class LoginController {
 		
 		try {
 			if(snsType.equals("kakao")) {
-				HashMap<String, Object> snsInfo = loginService.getSNSInfo(map);
-				
+				HashMap<String, String> snsInfo = loginService.getSNSInfo(map);
+				System.out.println(snsInfo);
 				if(snsInfo == null) {
 					result = "nomember";
 					
 				} else {
-					UserVO userInfo = loginService.getTalmoInfo(snsInfo);
+					UserVO userInfo = loginService.getTalmoInfoByCode(snsInfo);
 					
 					result = "success";
 				}
